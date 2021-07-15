@@ -1,15 +1,6 @@
-<%
-# @doc.css("p").each do |applist|
-#   # concatは、文字列をそのまま出力する関数です
-#   # link.textは、link要素（この場合はaタグ)の中の文字列を取得します。
-#   concat simple_format(h(applist.text))
-# end
-%>
-
-<%
-# @doc.each do |applist|
-#   puts 
-# end
-%>
+<div class="wrapper">
+  <%= render "side_bar" %>
+  <%= render "main_chat" %>
+</div>
 
 <%= @applist %>

@@ -1,0 +1,2 @@
+module SteamappsHelper
+end

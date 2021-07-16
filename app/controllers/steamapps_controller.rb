@@ -11,10 +11,10 @@ class SteamappsController < ApplicationController
       h.read
     end
     @doc=eval(html)
-    @applist=@doc[:applist][:apps]
+    @applist=@doc[:applist][:apps][4..104]#5個目からアプリ
     # データベースに保存
-    # @appid=@applist[0][:appid]
-    
+    # rails db:reset
+    App.create(@applist)
     # 読み出してindex作成
 
 

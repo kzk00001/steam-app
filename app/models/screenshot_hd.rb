@@ -1,0 +1,2 @@
+class ScreenshotHd < ApplicationRecord
+end

@@ -32,7 +32,7 @@ private
 
         @content=[]
         nokogiri_src(doc,@content,".game_header_image_full")
-        @content<<doc.css(".game_description_snippet").text
+        @content=doc.css(".game_description_snippet").text
         @content<<doc.css("#userReviews .game_review_summary").text
         @content<<doc.css(".date").text
         @content<<doc.css("#developers_list").text
@@ -47,12 +47,9 @@ private
         @tag=doc.css(".glance_tags_label").text
         nokogiri_text(doc,@tag,".app_tag")
         
-        doc.css("#game_area_purchase .game_purchase_price").each do |value|
-          @price=value[:"data-price-final"]
-        end
-        doc.css("#game_area_purchase .game_purchase_discount").each do |value|
-          @price=value[:"data-price-final"]
-        end
+        @price=[]
+        nokogiri_key(doc,@price,:"data-price-final","#game_area_purchase .game_purchase_price")
+        nokogiri_key(doc,@price,:"data-price-final","#game_area_purchase .game_purchase_discount")
         nokogiri_text(doc,@price,"#game_area_purchase .discount_pct")
         nokogiri_text(doc,@price,"#game_area_purchase .discount_original_price")
         nokogiri_text(doc,@price,"#game_area_purchase .discount_final_price")

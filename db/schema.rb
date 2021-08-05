@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_05_015923) do
+ActiveRecord::Schema.define(version: 2021_08_05_032311) do
 
   create_table "applists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "appid", null: false
@@ -20,24 +20,23 @@ ActiveRecord::Schema.define(version: 2021_08_05_015923) do
   end
 
   create_table "contents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "price", null: false
-    t.string "sale", null: false
-    t.string "review", null: false
-    t.string "release", null: false
-    t.string "page", null: false
-    t.string "header", null: false
+    t.text "header_image_url", null: false
+    t.text "description", null: false
+    t.string "review_summary", null: false
+    t.string "release_date", null: false
+    t.string "developer", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "hd_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "screenshot_hds", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "screenshot_hd_url", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "poor_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "image", null: false
+  create_table "screenshot_poors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "screenshot_poor_url", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

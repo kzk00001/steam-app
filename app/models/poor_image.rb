@@ -1,2 +1,0 @@
-class PoorImage < ApplicationRecord
-end

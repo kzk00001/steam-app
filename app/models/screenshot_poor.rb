@@ -1,0 +1,2 @@
+class ScreenshotPoor < ApplicationRecord
+end

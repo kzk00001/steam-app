@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class HdImageTest < ActiveSupport::TestCase
+class ScreenshotPoorTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

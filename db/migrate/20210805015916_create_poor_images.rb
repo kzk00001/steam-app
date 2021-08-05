@@ -1,6 +1,6 @@
-class CreateImages < ActiveRecord::Migration[6.0]
+class CreatePoorImages < ActiveRecord::Migration[6.0]
   def change
-    create_table :images do |t|
+    create_table :poor_images do |t|
       t.string :image,               null: false
       t.timestamps
     end

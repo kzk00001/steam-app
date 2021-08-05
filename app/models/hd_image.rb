@@ -1,0 +1,2 @@
+class HdImage < ApplicationRecord
+end

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SteamappsControllerTest < ActionDispatch::IntegrationTest
+class PoorImageTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

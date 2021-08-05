@@ -1,0 +1,2 @@
+class PoorImage < ApplicationRecord
+end

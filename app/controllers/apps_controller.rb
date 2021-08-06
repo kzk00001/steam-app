@@ -20,7 +20,7 @@ private
         h.read
       end
       doc=eval(html)
-      @applist=doc[:applist][:apps][4..6]#5個目からアプリ
+      @applist=doc[:applist][:apps][4..7]#5個目からアプリ
       Applist.create(@applist)
     end
 
@@ -30,53 +30,65 @@ private
         url = "https://store.steampowered.com/app/#{app.appid}"
         doc = Nokogiri::HTML(open(url),nil,"utf-8")
 
-        @content=[]
-        nokogiri_src(doc,@content,".game_header_image_full")
-        @content=doc.css(".game_description_snippet").text
-        @content<<doc.css("#userReviews .game_review_summary").text
-        @content<<doc.css(".date").text
-        @content<<doc.css("#developers_list").text
+        @content={}
+        nokogiri_src(doc,@content,:header_image_url,".game_header_image_full")
+        nokogiri_text(doc,@content,:description,".game_description_snippet")
+        nokogiri_text(doc,@content,:review_summary,"#userReviews .game_review_summary")
+        nokogiri_text(doc,@content,:release_date,".date")
+        nokogiri_text(doc,@content,:developer,"#developers_list")
 
         @screenshot_hd=[]
-        nokogiri_key(doc,@screenshot_hd,:href,".highlight_screenshot_link")
+        nokogiri_target(doc,@screenshot_hd,[],".highlight_screenshot_link",:href)
         @screenshot_poor=[]
-        nokogiri_src(doc,@screenshot_poor,".highlight_strip_screenshot img")
+        nokogiri_src(doc,@screenshot_poor,[],".highlight_strip_screenshot img")
         @movie=[]
-        nokogiri_key(doc,@movie,:"data-webm-hd-source",".highlight_movie")
+        nokogiri_target(doc,@movie,[],".highlight_movie",:"data-webm-hd-source")
 
-        @tag=doc.css(".glance_tags_label").text
-        nokogiri_text(doc,@tag,".app_tag")
-        
-        @price=[]
-        nokogiri_key(doc,@price,:"data-price-final","#game_area_purchase .game_purchase_price")
-        nokogiri_key(doc,@price,:"data-price-final","#game_area_purchase .game_purchase_discount")
-        nokogiri_text(doc,@price,"#game_area_purchase .discount_pct")
-        nokogiri_text(doc,@price,"#game_area_purchase .discount_original_price")
-        nokogiri_text(doc,@price,"#game_area_purchase .discount_final_price")
+        @tag=[]
+        nokogiri_text(doc,@tag,[],".app_tag")
+        @tag.delete("+")
+
+        @price={}
+        nokogiri_target(doc,@price,:game_purchase_price,"#game_area_purchase .game_purchase_price",:"data-price-final")
+        nokogiri_target(doc,@price,:game_purchase_price,"#game_area_purchase .game_purchase_discount",:"data-price-final")
+        nokogiri_text(doc,@price,:discount_pct,"#game_area_purchase .discount_pct")
+        nokogiri_text(doc,@price,:discount_original_price,"#game_area_purchase .discount_original_price")
+        nokogiri_text(doc,@price,:discount_final_price,"#game_area_purchase .discount_final_price")
       end
     end
 
-    def nokogiri_src(doc,variable,selector)
+    def nokogiri_src(doc,variable,key,selector)
       doc.css(selector).each do |value|
-        variable<<value.attribute("src").value
+        if key.present?
+          variable[key]=value.attribute("src").value
+        else
+          variable<<value.attribute("src").value
+        end
       end
     end
 
-    def nokogiri_key(doc,variable,key,selector)
+    def nokogiri_target(doc,variable,key,selector,target)
       doc.css(selector).each do |value|
-        variable<<value[key]
+        if key.present?
+          variable[key]=value[target]
+        else
+          variable<<value[target]
+        end
       end
     end
 
-    def nokogiri_text(doc,variable,selector)
+    def nokogiri_text(doc,variable,key,selector)
       doc.css(selector).each do |value|
-        variable<<value.text
+        if key.present?
+          variable[key]=value.text.strip
+        else
+          variable<<value.text.strip
+        end
       end
     end
 
     # def gender
     #   @gender
     # end
-
 
 end

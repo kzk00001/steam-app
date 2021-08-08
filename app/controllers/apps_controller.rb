@@ -5,7 +5,7 @@ class AppsController < ApplicationController
   def index
     get_applist
     html_scraping
-    # student = Student.new("男", "175cm", "優しい")
+
   end
 
 private
@@ -20,40 +20,62 @@ private
         h.read
       end
       doc=eval(html)
-      @applist=doc[:applist][:apps][4..7]#5個目からアプリ
+      @applist=doc[:applist][:apps][4..5]#5個目からアプリ
       Applist.create(@applist)
     end
 
     def html_scraping
       @applist=Applist.order("created_at ASC")
       @applist.each do |app|
-        url = "https://store.steampowered.com/app/#{app.appid}"
-        doc = Nokogiri::HTML(open(url),nil,"utf-8")
+          url = "https://store.steampowered.com/app/#{app.appid}"
+          doc = Nokogiri::HTML(open(url),nil,"utf-8")
 
-        @content={}
-        nokogiri_src(doc,@content,:header_image_url,".game_header_image_full")
-        nokogiri_text(doc,@content,:description,".game_description_snippet")
-        nokogiri_text(doc,@content,:review_summary,"#userReviews .game_review_summary")
-        nokogiri_text(doc,@content,:release_date,".date")
-        nokogiri_text(doc,@content,:developer,"#developers_list")
+          # unless app.name.include?("Pack")
 
-        @screenshot_hd=[]
-        nokogiri_target(doc,@screenshot_hd,[],".highlight_screenshot_link",:href)
-        @screenshot_poor=[]
-        nokogiri_src(doc,@screenshot_poor,[],".highlight_strip_screenshot img")
-        @movie=[]
-        nokogiri_target(doc,@movie,[],".highlight_movie",:"data-webm-hd-source")
+          @content={}
+          nokogiri_src(doc,@content,:header_image_url,".game_header_image_full")
+          nokogiri_text(doc,@content,:description,".game_description_snippet")
+          nokogiri_text(doc,@content,:review_summary,"#userReviews .game_review_summary")
+          nokogiri_text(doc,@content,:release_date,".date")
+          nokogiri_text(doc,@content,:developer,"#developers_list")
+          @content[:applist_id]=app.id
+          Content.create(@content)
 
-        @tag=[]
-        nokogiri_text(doc,@tag,[],".app_tag")
-        @tag.delete("+")
+          screenshot_url=[]
+          nokogiri_target(doc,screenshot_url,[],".highlight_screenshot_link",:href)
+          @screenshot_hd={}
+          @screenshot_hd[:url]=screenshot_url
+          @screenshot_hd[:applist_id]=app.id
+          ScreenshotHd.create(@screenshot_hd)
 
-        @price={}
-        nokogiri_target(doc,@price,:game_purchase_price,"#game_area_purchase .game_purchase_price",:"data-price-final")
-        nokogiri_target(doc,@price,:game_purchase_price,"#game_area_purchase .game_purchase_discount",:"data-price-final")
-        nokogiri_text(doc,@price,:discount_pct,"#game_area_purchase .discount_pct")
-        nokogiri_text(doc,@price,:discount_original_price,"#game_area_purchase .discount_original_price")
-        nokogiri_text(doc,@price,:discount_final_price,"#game_area_purchase .discount_final_price")
+          screenshot_url=[]
+          nokogiri_src(doc,screenshot_url,[],".highlight_strip_screenshot img")
+          @screenshot_poor={}
+          @screenshot_poor[:url]=screenshot_url
+          @screenshot_poor[:applist_id]=app.id
+          ScreenshotPoor.create(@screenshot_poor)
+
+          movie_url=[]
+          nokogiri_target(doc,movie_url,[],".highlight_movie",:"data-webm-hd-source")
+          @movie={}
+          @movie[:url]=movie_url
+          @movie[:applist_id]=app.id
+          Movie.create(@movie)
+
+          # @tag=[]
+          # nokogiri_text(doc,@tag,[],".app_tag")
+          # @tag.delete("+")
+          # Tag.create(@tag)
+
+          @price={}
+          nokogiri_target(doc,@price,:game_purchase_price,"#game_area_purchase .game_purchase_price",:"data-price-final")
+          nokogiri_target(doc,@price,:game_purchase_price,"#game_area_purchase .game_purchase_discount",:"data-price-final")
+          nokogiri_text(doc,@price,:discount_pct,"#game_area_purchase .discount_pct")
+          nokogiri_text(doc,@price,:discount_original_price,"#game_area_purchase .discount_original_price")
+          nokogiri_text(doc,@price,:discount_final_price,"#game_area_purchase .discount_final_price")
+          @price[:applist_id]=app.id
+          Price.create(@price)
+        # end
       end
     end
 

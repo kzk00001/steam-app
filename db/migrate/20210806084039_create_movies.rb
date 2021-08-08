@@ -1,6 +1,6 @@
-class CreateScreenshotHds < ActiveRecord::Migration[6.0]
+class CreateMovies < ActiveRecord::Migration[6.0]
   def change
-    create_table :screenshot_hds do |t|
+    create_table :movies do |t|
       t.text :url
       t.references :applist,     null: false, foreign_key: true
       t.timestamps

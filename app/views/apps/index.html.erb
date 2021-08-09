@@ -78,8 +78,9 @@ return false;
   <div class='list'>
     <%= link_to "#" do %>
     <div class='item-img-content'>
-      <%# <%= image_tag @content %>
+      <%= image_tag app.content.header_image_url %>
       <%= app.name %>
+      <%= app.content.description %>
       <%= @content %>
       <%= @screenshot_poor %>
       <%= @screenshot_hd %>

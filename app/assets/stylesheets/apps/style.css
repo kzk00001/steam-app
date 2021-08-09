@@ -44,10 +44,10 @@ a:hover {
 /*ヘッダー（一番上の、ロゴやメニューが入っているブロック）
 ---------------------------------------------------------------------------*/
 header {
-	height: 100%;
+	height: 200px;
 	overflow: auto;
 	position: relative;
-	background: url(../images/mainimg.jpg) no-repeat center center / cover;	/*背景画像の読み込み*/
+	/*background: url(../images/mainimg.jpg) no-repeat center center / cover;	/*背景画像の読み込み*/
 }
 /*ロゴ画像*/
 header #logo img {
@@ -374,4 +374,37 @@ ol {
 .ws {width: 96%;}
 .big1 {font-size: 22px;letter-spacing: normal;}
 
+}
+
+
+
+
+/*java
+---------------------------------------------------------------------------*/
+#navi li{
+	width:60px;
+	height:60px;
+	float:left;
+	background:none;
+	padding:0 10px 0px 0;
+	margin:0 0 10px 0;
+}
+#navi li a{
+	display:block;
+}
+#navi li a:link    {}
+#navi li a:visited {}
+#navi li a:hover   {opacity:0.8;}
+#navi li a:active  {opacity:0.8;}
+/* IE用 ↓*/
+#navi li a:hover img {filter:alpha(opacity=80);}
+
+#photo{
+	margin:20px 0 0 0;
+}
+#photo img{
+position:absolute;
+width:100%;
+height:auto;
+max-width:700px;
 }

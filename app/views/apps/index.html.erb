@@ -1,157 +1,42 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>初心者向けホームページテンプレート tp_beginner6</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="ここにサイト説明を入れます">
-<meta name="keywords" content="キーワード１,キーワード２,キーワード３,キーワード４,キーワード５">
-<link rel="stylesheet" href="css/style.css">
-<script src="js/fixmenu_pagetop.js"></script>
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script>
-$(function(){
-$('a[href^="#"]').click(function() {
-var speed = 800;
-var href= $(this).attr("href");
-var target = $(href == "#" || href == "" ? 'html' : href);
-var position = target.offset().top;
-$('body,html').animate({scrollTop:position}, speed, 'swing');
-return false;
-});
-});
-</script>
-</head>
-
-<body>
-
-<header>
-<h1 id="logo"><a href="index.html"><img src="images/logo.png" alt="SAMPLE COMPANY"></a></h1>
-<nav id="menubar">
-<ul>
-<li><a href="#new">What's New</a></li>
-<li><a href="#company">Company</a></li>
-<li><a href="#service">Service</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-</nav>
-</header>
+<%= render "shared/header" %>
 
 <div id="container">
+  <div id="contents">
+    <section id="apps">
+      <h2>Apps</h2>
+      <% @applists.each do |app| %>
+        <div class='list'>
+          <%= link_to app_path(app.id) do %>
+          <div class='item-img-content'>
+            <%= image_tag app.content.header_image_url %>
+            <%= app.name %>
+            <%= app.content.description %>
+            <%= @content %>
+            <%= @screenshot_poor %>
+            <%= @screenshot_hd %>
+            <%= @tag %>
+            <%= @price %>
+          </div>
+          <% end %>
+        </div>
+      <% end %>
 
-<div id="contents">
+      <div class="list">
+      <img src="images/sample1.jpg" alt="">
+      <h4>ここの見出しのサイズは、cssフォルダのstyle.cssの「.list h4」で変更できます。</h4>
+      <p>左の画像の幅もstyle.cssの「.list img」のwidthの数字で変更できます。</p>
+      </div>
 
-<section id="new">
-
-<h2>What's New</h2>
-<dl>
-<dt>2020/09/27</dt>
-<dd>初心者向け無料ホームページテンプレートtp_beginner6公開。</dd>
-<dt>20XX/00/00</dt>
-<dd>サンプルテキスト。サンプルテキスト。サンプルテキスト。</dd>
-<dt>20XX/00/00</dt>
-<dd>サンプルテキスト。サンプルテキスト。サンプルテキスト。</dd>
-<dt>20XX/00/00</dt>
-<dd>サンプルテキスト。サンプルテキスト。サンプルテキスト。</dd>
-<dt>20XX/00/00</dt>
-<dd>サンプルテキスト。サンプルテキスト。サンプルテキスト。</dd>
-<dt>20XX/00/00</dt>
-<dd>サンプルテキスト。サンプルテキスト。サンプルテキスト。</dd>
-<dt>20XX/00/00</dt>
-<dd>サンプルテキスト。サンプルテキスト。サンプルテキスト。</dd>
-</dl>
-
-</section>
-<!--/#new-->
-
-<section id="service">
-
-<h2>Service</h2>
-
-
-<% @applist.each do |app| %>
-  <div class='list'>
-    <%= link_to "#" do %>
-    <div class='item-img-content'>
-      <%= image_tag app.content.header_image_url %>
-      <%= app.name %>
-      <%= app.content.description %>
-      <%= @content %>
-      <%= @screenshot_poor %>
-      <%= @screenshot_hd %>
-      <%= @tag %>
-      <%= @price %>
-
-    </div>
-    <% end %>
+    </section>
   </div>
-<% end %>
-
-
-
-<div class="list">
-<img src="images/sample1.jpg" alt="">
-<h4>ここの見出しのサイズは、cssフォルダのstyle.cssの「.list h4」で変更できます。</h4>
-<p>左の画像の幅もstyle.cssの「.list img」のwidthの数字で変更できます。</p>
 </div>
 
-<div class="list">
-<img src="images/sample2.jpg" alt="">
-<h4>見出しを入れます。</h4>
-<p>説明を入れます。</p>
-</div>
-
-<div class="list">
-<img src="images/sample3.jpg" alt="">
-<h4>見出しを入れます。</h4>
-<p>説明を入れます。</p>
-</div>
-
-<div class="list">
-<img src="images/sample4.jpg" alt="">
-<h4>見出しを入れます。</h4>
-<p>説明を入れます。</p>
-</div>
-
-<div class="list">
-<img src="images/sample5.jpg" alt="">
-<h4>見出しを入れます。</h4>
-<p>説明を入れます。</p>
-</div>
-
-</section>
-<!--/#service-->
-
-<section id="contact">
-
-<h2>Contact</h2>
-<p class="c">お問い合わせは以下までお願い致します。</p>
-<p class="c"><span class="big1">03-0000-0000</span><br>
-定休日：毎週土日<br>
-営業時間AM9:00〜PM6:00</p>
-<p class="c"><img src="images/sample1.jpg" alt="" width="300"></p>
-
-</section>
-<!--/#contact-->
-
-</div>
-<!--/#contents-->
-
-</div>
-<!--/#container-->
+<%# <%= render "shared/footer" %> %>
 
 <footer>
-<small>Copyright&copy; <a href="index.html">SAMPLE COMPANY</a> All Rights Reserved.</small>
-<span class="pr">《<a href="https://template-party.com/" target="_blank">Web Design:Template-Party</a>》</span>
+  <small>Copyright&copy; <a href="index.html">SAMPLE COMPANY</a> All Rights Reserved.</small>
+  <span class="pr">《<a href="https://template-party.com/" target="_blank">Web Design:Template-Party</a>》</span>
 </footer>
 
 <!--ページの上部に戻る「↑」ボタン-->
 <p class="nav-fix-pos-pagetop"><a href="#">↑</a></p>
-
-</body>
-</html>

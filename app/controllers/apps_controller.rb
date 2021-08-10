@@ -10,6 +10,7 @@ class AppsController < ApplicationController
   def show
     @applist=Applist.find(params[:id])
     @screenshot_hd = ScreenshotHd.where(applist_id: params[:id])
+    @screenshot_poor = ScreenshotPoor.where(applist_id: params[:id])
 
 
     # binding.pry

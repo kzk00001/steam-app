@@ -1,3 +1,4 @@
 class Tag < ApplicationRecord
-  # belongs_to :applist
+  has_many :applist_tags
+  has_many :applists, through: :applist_tags
 end

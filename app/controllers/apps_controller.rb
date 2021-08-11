@@ -9,17 +9,12 @@ class AppsController < ApplicationController
 
   def show
     @applist=Applist.find(params[:id])
-    @screenshot_hd = ScreenshotHd.where(applist_id: params[:id])
-    @screenshot_poor = ScreenshotPoor.where(applist_id: params[:id])
-
-
-    # binding.pry
   end
 
   private
 
   def get_app
-    Applist.destroy_all
+    # Applist.destroy_all
     uri = "http://api.steampowered.com/ISteamApps/GetAppList/v2"
     charset = nil
     html = open(uri) do |h|
@@ -27,14 +22,22 @@ class AppsController < ApplicationController
       h.read
     end
     doc=eval(html)
-    applists=doc[:applist][:apps][4..6]#5個目からアプリ
+    applists=doc[:applist][:apps][4..30]#5個目からアプリ
     applists.each do |applist|
       url = "https://store.steampowered.com/app/#{applist[:appid]}"
       doc = Nokogiri::HTML(open(url),nil,"utf-8")
       #スクレイピング
+
+      doc.css(".glance_details").each do |value|
+        @variable=value.text.strip
+      end
+
       @content={}
       nokogiri_src(doc,@content,:header_image_url,".game_header_image_full")
-      unless @content[:header_image_url].nil?
+      nokogiri_text(doc,@content,:glance_detail,".glance_details")
+      unless @content[:header_image_url].nil? ||
+        ["This is additional content"].any? { |word| @variable.include? word }
+
         nokogiri_text(doc,@content,:description,".game_description_snippet")
         nokogiri_text(doc,@content,:review_summary,"#userReviews .game_review_summary")
         nokogiri_text(doc,@content,:release_date,".date")
@@ -49,6 +52,18 @@ class AppsController < ApplicationController
           @screenshot_hd[:applist_id]=applist.id
           ScreenshotHd.create(@screenshot_hd)
         end
+
+
+
+        doc.css(".highlight_player_item").each do |value|
+          @screenshot_middle=value
+          # @screenshot_middle={}
+          # @screenshot_middle[:url]=value.attribute("src").value
+          # @screenshot_middle[:applist_id]=applist.id
+          # ScreenshotMiddle.create(@screenshot_middle)
+        end
+
+
 
         doc.css(".highlight_strip_screenshot img").each do |value|
           @screenshot_poor={}
@@ -68,6 +83,21 @@ class AppsController < ApplicationController
         # nokogiri_text(doc,@tag,[],".app_tag")
         # @tag.delete("+")
         # Tag.create(@tag)
+
+        doc.css(".app_tag").each do |value|
+          unless value.text.strip.include?("+")
+            @tag={}
+            @tag[:tag]=value.text.strip
+            if Tag.where(@tag).exists?
+              tag=Tag.where(@tag)
+              # binding.pry
+              ApplistTag.create(applist_id:applist.id,tag_id:tag.ids)
+            else
+              tag=Tag.create(@tag)
+              ApplistTag.create(applist_id:applist.id,tag_id:tag.id)
+            end
+          end
+        end
 
         @price={}
         nokogiri_target(doc,@price,:game_purchase_price,"#game_area_purchase .game_purchase_price",:"data-price-final")

@@ -1,7 +1,6 @@
 <%= render "shared/header" %>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script> 
-<script type="text/javascript" src="gallery.js"></script> 
 
 <div id="container">
   <div id="contents">
@@ -9,26 +8,25 @@
       <h2>Apps</h2>
 
 
-<div id="photo">
-  <img src="<%=@screenshot_hd[0].url%>" alt="orange" width="700" height="350">
-</div>
-
-<div id="navi">
-  <ul class="ex_clearfix">
-  <% @screenshot_hd.zip(@screenshot_poor) do |screenshot_hd, screenshot_poor| %>
-    <li><a href="<%=screenshot_hd.url%>"><img src="<%=screenshot_poor.url%>" width="60" height="60"></a></li>
-  <% end %>
-  </ul>
-</div>
-
-
       <div class="list">
-      <%= image_tag @applist.content.header_image_url %>
       <%= @applist.name %>
+
+
+      <div id="photo">
+        <img src="<%=@applist.screenshot_hd[0].url%>" alt="orange" width="700" height="350">
+      </div>
+      <div id="navi">
+        <ul class="ex_clearfix">
+        <% @applist.screenshot_hd.zip(@applist.screenshot_poor) do |screenshot_hd, screenshot_poor| %>
+          <li><a href="<%=screenshot_hd.url%>"><img src="<%=screenshot_poor.url%>" width="60" height="60"></a></li>
+        <% end %>
+        </ul>
+      </div>
+
+
+      <%= image_tag @applist.content.header_image_url %>
       <%= @applist.content.description %>
-      <%= @applist.screenshot_poor %>
-      <%= @applist.screenshot_hd %>
-      <%= image_tag @applist.screenshot_hd[5].url %>
+
       <h4>ここの見出しのサイズは、cssフォルダのstyle.cssの「.list h4」で変更できます。</h4>
       <p>左の画像の幅もstyle.cssの「.list img」のwidthの数字で変更できます。</p>
       </div>

@@ -4,23 +4,24 @@
   <div id="contents">
     <section id="apps">
       <h2>Apps</h2>
+
       <% @applists.each do |app| %>
         <div class='list'>
           <%= link_to app_path(app.id) do %>
-          <div class='item-img-content'>
-            <%= image_tag app.content.header_image_url %>
-            <%= app.name %>
-            <%= app.content.description %>
-            
-            <%# <%= @content %> %>
-            <%# <%= @screenshot_poor %> %>
-            <%# <%= @screenshot_hd %> %>
-            <%= @screenshot_middle %>
-            <%= @tag %>
-            <%= @price %>
-            <%= @a %>
+            <div class='item-img-content'>
+              <%= image_tag app.content.header_image_url %>
+              <%= app.name %>
+              <%= app.content.description %>
 
-          </div>
+              <% app.tags.each do |record| %>
+                <%= record.tag %>
+              <% end %>
+
+              <% app.price.each do |record| %>
+                <%= record.game_purchase_price %>
+              <% end %>
+
+            </div>
           <% end %>
         </div>
       <% end %>

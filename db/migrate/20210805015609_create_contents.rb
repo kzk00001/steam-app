@@ -1,7 +1,7 @@
 class CreateContents < ActiveRecord::Migration[6.0]
   def change
     create_table :contents do |t|
-      t.text :header_image_url
+      t.text :header_image_url,      null: false
       t.text :glance_detail
 
       t.text :description

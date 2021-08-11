@@ -1,0 +1,2 @@
+class DiscardedApplist < ApplicationRecord
+end

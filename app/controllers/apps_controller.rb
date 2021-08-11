@@ -4,7 +4,7 @@ class AppsController < ApplicationController
   
   def index
     get_app
-    @applists=Applist.all.includes([:content, :screenshot_hd, :screenshot_poor, :movie, :price])
+    @applists=Applist.all.includes([:content, :screenshot_hd, :screenshot_poor, :movie, :tags, :price])
   end
 
   def show
@@ -22,27 +22,30 @@ class AppsController < ApplicationController
       h.read
     end
     doc=eval(html)
-    applists=doc[:applist][:apps][4..30]#5個目からアプリ
+    applists=doc[:applist][:apps][4..100]#5個目からアプリ
     applists.each do |applist|
       url = "https://store.steampowered.com/app/#{applist[:appid]}"
       doc = Nokogiri::HTML(open(url),nil,"utf-8")
       #スクレイピング
+      @price={}
+      nokogiri_target(doc,@price,:game_purchase_price,".game_purchase_price",:"data-price-final")
+      nokogiri_target(doc,@price,:game_purchase_price,".game_purchase_discount",:"data-price-final")
 
-      doc.css(".glance_details").each do |value|
-        @variable=value.text.strip
-      end
+      unless @price[:game_purchase_price].nil?
+        applist=Applist.create(applist)
+        nokogiri_text(doc,@price,:discount_pct,"#game_area_purchase .discount_pct")
+        nokogiri_text(doc,@price,:discount_original_price,"#game_area_purchase .discount_original_price")
+        nokogiri_text(doc,@price,:discount_final_price,"#game_area_purchase .discount_final_price")
+        @price[:applist_id]=applist.id
+        Price.create(@price)
 
-      @content={}
-      nokogiri_src(doc,@content,:header_image_url,".game_header_image_full")
-      nokogiri_text(doc,@content,:glance_detail,".glance_details")
-      unless @content[:header_image_url].nil? ||
-        ["This is additional content"].any? { |word| @variable.include? word }
-
+        @content={}
+        nokogiri_text(doc,@content,:glance_detail,".glance_details")
+        nokogiri_src(doc,@content,:header_image_url,".game_header_image_full")
         nokogiri_text(doc,@content,:description,".game_description_snippet")
         nokogiri_text(doc,@content,:review_summary,"#userReviews .game_review_summary")
         nokogiri_text(doc,@content,:release_date,".date")
         nokogiri_text(doc,@content,:developer,"#developers_list")
-        applist=Applist.create(applist)
         @content[:applist_id]=applist.id
         Content.create(@content)
 
@@ -92,14 +95,8 @@ class AppsController < ApplicationController
           end
         end
 
-        @price={}
-        nokogiri_target(doc,@price,:game_purchase_price,"#game_area_purchase .game_purchase_price",:"data-price-final")
-        nokogiri_target(doc,@price,:game_purchase_price,"#game_area_purchase .game_purchase_discount",:"data-price-final")
-        nokogiri_text(doc,@price,:discount_pct,"#game_area_purchase .discount_pct")
-        nokogiri_text(doc,@price,:discount_original_price,"#game_area_purchase .discount_original_price")
-        nokogiri_text(doc,@price,:discount_final_price,"#game_area_purchase .discount_final_price")
-        @price[:applist_id]=applist.id
-        Price.create(@price)
+      else
+        DiscardedApplist.create(applist)
       end
     end
   end

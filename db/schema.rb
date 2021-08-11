@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_11_064416) do
+ActiveRecord::Schema.define(version: 2021_08_11_091051) do
 
   create_table "applist_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "applist_id", null: false
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2021_08_11_064416) do
   end
 
   create_table "contents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "header_image_url"
+    t.text "header_image_url", null: false
     t.text "glance_detail"
     t.text "description"
     t.string "review_summary"
@@ -39,6 +39,13 @@ ActiveRecord::Schema.define(version: 2021_08_11_064416) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["applist_id"], name: "index_contents_on_applist_id"
+  end
+
+  create_table "discarded_applists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "appid", null: false
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "movies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -61,7 +68,7 @@ ActiveRecord::Schema.define(version: 2021_08_11_064416) do
   end
 
   create_table "screenshot_hds", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "url"
+    t.text "url", null: false
     t.bigint "applist_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -77,7 +84,7 @@ ActiveRecord::Schema.define(version: 2021_08_11_064416) do
   end
 
   create_table "screenshot_poors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "url"
+    t.text "url", null: false
     t.bigint "applist_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -85,7 +92,7 @@ ActiveRecord::Schema.define(version: 2021_08_11_064416) do
   end
 
   create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "tag"
+    t.text "tag", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -14,7 +14,7 @@ class AppsController < ApplicationController
   private
 
   def get_app
-    # Applist.destroy_all
+    Applist.destroy_all
     uri = "http://api.steampowered.com/ISteamApps/GetAppList/v2"
     charset = nil
     html = open(uri) do |h|
@@ -79,23 +79,16 @@ class AppsController < ApplicationController
           Movie.create(@movie)
         end
 
-        # @tag=[]
-        # nokogiri_text(doc,@tag,[],".app_tag")
-        # @tag.delete("+")
-        # Tag.create(@tag)
-
         doc.css(".app_tag").each do |value|
           unless value.text.strip.include?("+")
             @tag={}
             @tag[:tag]=value.text.strip
             if Tag.where(@tag).exists?
-              tag=Tag.where(@tag)
-              # binding.pry
-              ApplistTag.create(applist_id:applist.id,tag_id:tag.ids)
+              tag=Tag.find_by(@tag)
             else
               tag=Tag.create(@tag)
-              ApplistTag.create(applist_id:applist.id,tag_id:tag.id)
             end
+            ApplistTag.create(applist_id:applist.id,tag_id:tag.id)
           end
         end
 

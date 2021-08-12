@@ -1,7 +1,5 @@
 <%= render "shared/header" %>
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script> 
-
 <div id="container">
   <div id="contents">
     <section id="apps">
@@ -23,15 +21,42 @@
         </ul>
       </div>
 
-
+      <div>
       <%= image_tag @applist.content.header_image_url %>
+      </div>
+      <div>
       <%= @applist.content.description %>
+      </div>
 
       <h4>ここの見出しのサイズは、cssフォルダのstyle.cssの「.list h4」で変更できます。</h4>
       <p>左の画像の幅もstyle.cssの「.list img」のwidthの数字で変更できます。</p>
       </div>
 
     </section>
+
+
+    <section id="new">
+
+      <h2>What's New</h2>
+      <dl>
+        <dt>2020/09/27</dt>
+        <dd>初心者向け無料ホームページテンプレートtp_beginner6公開。</dd>
+        <dt>20XX/00/00</dt>
+        <dd>サンプルテキスト。サンプルテキスト。サンプルテキスト。</dd>
+        <dt>20XX/00/00</dt>
+        <dd>サンプルテキスト。サンプルテキスト。サンプルテキスト。</dd>
+        <dt>20XX/00/00</dt>
+        <dd>サンプルテキスト。サンプルテキスト。サンプルテキスト。</dd>
+        <dt>20XX/00/00</dt>
+        <dd>サンプルテキスト。サンプルテキスト。サンプルテキスト。</dd>
+        <dt>20XX/00/00</dt>
+        <dd>サンプルテキスト。サンプルテキスト。サンプルテキスト。</dd>
+        <dt>20XX/00/00</dt>
+        <dd>サンプルテキスト。サンプルテキスト。サンプルテキスト。</dd>
+      </dl>
+
+    </section>
+    <!--/#new-->
   </div>
 </div>
 

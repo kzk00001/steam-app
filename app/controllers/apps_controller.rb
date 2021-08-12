@@ -22,7 +22,7 @@ class AppsController < ApplicationController
       h.read
     end
     doc=eval(html)
-    applists=doc[:applist][:apps][4..100]#5個目からアプリ
+    applists=doc[:applist][:apps][4..20]#5個目からアプリ
     applists.each do |applist|
       url = "https://store.steampowered.com/app/#{applist[:appid]}"
       doc = Nokogiri::HTML(open(url),nil,"utf-8")
@@ -44,6 +44,7 @@ class AppsController < ApplicationController
         nokogiri_src(doc,@content,:header_image_url,".game_header_image_full")
         nokogiri_text(doc,@content,:description,".game_description_snippet")
         nokogiri_text(doc,@content,:review_summary,"#userReviews .game_review_summary")
+        nokogiri_text(doc,@content,:review_summary,"#userReviews .summary")
         nokogiri_text(doc,@content,:release_date,".date")
         nokogiri_text(doc,@content,:developer,"#developers_list")
         @content[:applist_id]=applist.id
@@ -96,6 +97,10 @@ class AppsController < ApplicationController
         end
 
       else
+        nokogiri_text(doc,applist,:release_date,".date")
+        nokogiri_text(doc,applist,:price,".game_purchase_price")
+        nokogiri_text(doc,applist,:review_summary,"#userReviews .game_review_summary")
+        nokogiri_text(doc,applist,:review_summary,"#userReviews .summary")
         DiscardedApplist.create(applist)
       end
     end

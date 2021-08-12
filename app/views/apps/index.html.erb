@@ -10,16 +10,26 @@
           <%= link_to app_path(app.id) do %>
             <div class='item-img-content'>
               <%= image_tag app.content.header_image_url %>
-              <%= app.name %>
-              <%= app.content.description %>
+              <div>
+                <%= app.name %>
+              </div>
+              <div>
+                <%= app.content.description %>
+              </div>
 
-              <% app.tags.each do |record| %>
-                <%= record.tag %>
-              <% end %>
+              <div>
+                <ul>
+                  <% app.tags.each do |record| %>
+                    <li class=app_tag><%= link_to record.tag, "#company" %></li>
+                  <% end %>
+                </ul>
+              </div>
 
+              <div>
               <% app.price.each do |record| %>
                 <%= record.game_purchase_price %>
               <% end %>
+              </div>
 
             </div>
           <% end %>

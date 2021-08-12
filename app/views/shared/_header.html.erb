@@ -1,6 +1,11 @@
 <%# CSS・・・assets/stylesheets/shared/header.css %>
 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script> 
+
+
+
 <header class='top-page-header'>
+
   <div class='search-bar-contents'>
     <%= link_to image_tag("logo_transparent.png", class:"furima-icon"), "/" %>
     <form class="search-form" action="#">
@@ -10,19 +15,15 @@
       </button>
     </form>
   </div>
+
   <div class='nav'>
-    <ul class='lists-left'>
-      <li><%= link_to 'カテゴリー', "#", class: "category-list" %></li>
-      <li><%= link_to 'ブランド', "#", class: "brand-list" %></li>
-    </ul>
-    <ul class='lists-right'>
-      <%# <% if user_signed_in? %> %>
-        <%# <li><%= link_to current_user.nickname, "#", class: "user-nickname" %></li>
-        <%# <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout" %></li> %> %>
-      <%# <% else %> %>
-        <%# <li><%= link_to 'ログイン', new_user_session_path, class: "login" %></li>
-        <%# <li><%= link_to '新規登録', new_user_registration_path, class: "sign-up" %></li> %> %>
-      <%# <% end %> %>
-    </ul>
+    <nav id="menubar">
+      <ul>
+        <li><%= link_to "Recommended", "#company" %></li>
+        <li><%= link_to "Discounted", "#company" %></li>
+        <li><%= link_to "Highly rated", "#service" %></li>
+        <li><%= link_to "New Releases", "#contact" %></li>
+      </ul>
+    </nav>
   </div>
 </header>

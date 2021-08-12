@@ -7,11 +7,11 @@
 
 /*全体の設定
 ---------------------------------------------------------------------------*/
-html,body {height: 100%;}
+/* html,body {height: 100%;} */
 body {
 	margin: 0px;
 	padding: 0px;
-	color: #333;	/*全体の文字色*/
+	color: #fff;	/*全体の文字色*/
 	font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;	/*フォント種類*/
 	font-size: 16px;	/*文字サイズ*/
 	line-height: 2;		/*行間*/
@@ -33,61 +33,13 @@ iframe {width: 100%;}
 /*リンク（全般）設定
 ---------------------------------------------------------------------------*/
 a {
-	color: #333;		/*リンクテキストの色*/
+	color: #fff;		/*リンクテキストの色*/
 	transition: 0.5s;	/*マウスオン時の移り変わるまでの時間設定。0.5秒。*/
+	text-decoration: none;
 }
 a:hover {
-	color: #ff4765;			/*マウスオン時の文字色*/
+	color: #67c1f5;			/*マウスオン時の文字色*/
 	text-decoration: none;	/*マウスオン時に下線を消す設定。残したいならこの１行削除。*/
-}
-
-/*ヘッダー（一番上の、ロゴやメニューが入っているブロック）
----------------------------------------------------------------------------*/
-header {
-	height: 200px;
-	overflow: auto;
-	position: relative;
-	/*background: url(../images/mainimg.jpg) no-repeat center center / cover;	/*背景画像の読み込み*/
-}
-/*ロゴ画像*/
-header #logo img {
-	display: block;
-	width: 20%;	/*画像の幅*/
-	position: absolute;
-	left: 40%;		/*ロゴやメニューが入っているブロックに対して、左からの配置場所の指定。*/
-	bottom: 50%;	/*ロゴやメニューが入っているブロックに対して、下からの配置場所の指定。*/
-}
-
-/*メニュー
----------------------------------------------------------------------------*/
-/*メニューブロック全体への指定*/
-#menubar {
-	position: absolute;
-	bottom: 20%;	/*ロゴやメニューが入っているブロックに対して、下からの配置場所の指定。*/
-	left: 0px;
-	width: 100%;
-	text-align: center;
-}
-/*メニュー１個あたりの指定*/
-#menubar li {
-	display: inline-block;
-	margin: 0 1%;
-	animation-name: opa1;
-	animation-delay: 1S;
-	animation-duration: 1S;
-	animation-fill-mode: both;
-}
-#menubar li a {
-	text-decoration: none;display: block;text-align: center;
-	width: 140px;	/*メニューの幅*/
-	color: #fff;	/*文字色*/
-	border-bottom: 2px solid transparent;	/*下線の幅、線種、色。transparentは透明の事。*/
-	padding-bottom: 7px;	/*下線と文字の間にとる余白*/
-}
-/*マウスオン時の指定*/
-#menubar li a:hover {
-	border-bottom: 2px solid #fff;	/*下線の幅、線種、色*/
-	letter-spacing: 0.1em;			/*文字間隔を少しだけ広くする指定。そのままがいいならこの１行を削除。*/
 }
 
 /*コンテナー（headerとfooterをのぞくブロックを囲むブロック）
@@ -208,40 +160,6 @@ footer .pr {
 /*記事設定*/
 #new dd {
 	padding-left: 9em;
-}
-
-/*テーブル
----------------------------------------------------------------------------*/
-/*テーブル１行目に入った見出し部分（※caption）*/
-.ta1 caption {
-	border: 1px solid #999;	/*テーブルの枠線の幅、線種、色*/
-	border-bottom: none;	/*下線だけ消す*/
-	text-align: center;		/*文字をセンタリング*/
-	background: #dfdfdf;	/*背景色*/
-	font-weight: bold;		/*太字に*/
-	padding: 10px;			/*ボックス内の余白*/
-}
-/*テーブル１行目に入った見出し部分（※tamidashi）*/
-.ta1 th.tamidashi {
-	width: auto;
-	text-align: center;	/*文字をセンタリング*/
-	background: #dfdfdf;	/*背景色*/
-}
-/*ta1テーブルブロック設定*/
-.ta1 {
-	table-layout: fixed;
-	width: 100%;
-	margin: 0 auto 20px;
-}
-.ta1, .ta1 td, .ta1 th {
-	word-break: break-all;
-	border: 1px solid #999;	/*テーブルの枠線の幅、線種、色*/
-	padding: 10px;			/*テーブル内の余白*/
-}
-/*テーブルの左側ボックス*/
-.ta1 th {
-	text-align: center;	/*センタリング*/
-	width: 30%;			/*幅*/
 }
 
 /*PAGE TOP（↑）設定
@@ -379,19 +297,37 @@ ol {
 
 
 
-/*java
+/*サムネイル表示のjava
 ---------------------------------------------------------------------------*/
+#photo{
+	margin:20px 0 0 0;
+}
+#photo img{
+	/* position:absolute; */
+	width:100%;
+	height:auto;
+	/* max-width:700px; */
+}
+
+/* #navi ul{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+} */
+
 #navi li{
-	width:60px;
-	height:60px;
+	/* width:200px; */
+	/* height:200px; */
 	float:left;
 	background:none;
 	padding:0 10px 0px 0;
 	margin:0 0 10px 0;
 }
+
 #navi li a{
 	display:block;
 }
+
 #navi li a:link    {}
 #navi li a:visited {}
 #navi li a:hover   {opacity:0.8;}
@@ -399,12 +335,26 @@ ol {
 /* IE用 ↓*/
 #navi li a:hover img {filter:alpha(opacity=80);}
 
-#photo{
-	margin:20px 0 0 0;
+
+
+
+
+
+/*タグ
+---------------------------------------------------------------------------*/
+.app_tag {
+	display: inline-block;
+	line-height: 19px;
+	padding: 0 7px;
+	color: #67c1f5;
+	background-color: rgba( 103, 193, 245, 0.2 );
+	box-shadow: none;
+	margin-right: 2px;
+	border-radius: 2px;
+	cursor: pointer;
+	margin-bottom: 3px;
+	max-width: 200px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
-/* #photo img{
-position:absolute;
-width:100%;
-height:auto;
-max-width:700px;
-} */

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_11_091051) do
+ActiveRecord::Schema.define(version: 2021_08_12_034458) do
 
   create_table "applist_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "applist_id", null: false
@@ -44,6 +44,9 @@ ActiveRecord::Schema.define(version: 2021_08_11_091051) do
   create_table "discarded_applists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "appid", null: false
     t.string "name", null: false
+    t.string "release_date"
+    t.string "price"
+    t.string "review_summary"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -54,6 +57,11 @@ ActiveRecord::Schema.define(version: 2021_08_11_091051) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["applist_id"], name: "index_movies_on_applist_id"
+  end
+
+  create_table "news", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "prices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

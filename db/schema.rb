@@ -60,8 +60,16 @@ ActiveRecord::Schema.define(version: 2021_08_12_034458) do
   end
 
   create_table "news", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "gid"
+    t.string "title", null: false
+    t.text "url", null: false
+    t.string "author"
+    t.text "contents"
+    t.string "date"
+    t.bigint "applist_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["applist_id"], name: "index_news_on_applist_id"
   end
 
   create_table "prices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -83,14 +91,6 @@ ActiveRecord::Schema.define(version: 2021_08_12_034458) do
     t.index ["applist_id"], name: "index_screenshot_hds_on_applist_id"
   end
 
-  create_table "screenshot_middles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "url"
-    t.bigint "applist_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["applist_id"], name: "index_screenshot_middles_on_applist_id"
-  end
-
   create_table "screenshot_poors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "url", null: false
     t.bigint "applist_id", null: false
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 2021_08_12_034458) do
   end
 
   create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "tag", null: false
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -109,8 +109,8 @@ ActiveRecord::Schema.define(version: 2021_08_12_034458) do
   add_foreign_key "applist_tags", "tags"
   add_foreign_key "contents", "applists"
   add_foreign_key "movies", "applists"
+  add_foreign_key "news", "applists"
   add_foreign_key "prices", "applists"
   add_foreign_key "screenshot_hds", "applists"
-  add_foreign_key "screenshot_middles", "applists"
   add_foreign_key "screenshot_poors", "applists"
 end

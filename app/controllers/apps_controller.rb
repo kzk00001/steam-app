@@ -6,8 +6,8 @@ class AppsController < ApplicationController
   
   def index
     get_app
-    @applists=Applist.all.includes([:content, :screenshot_hd, :screenshot_poor, :movie, :tags, :price])
-    @applists = @p.result.includes([:tags, :price])
+    @applists=Applist.all.includes([:content, :screenshot_hd, :screenshot_poor, :movie, :tags, :price]).page(params[:page])
+    @applists=@p.result.includes([:tags, :price]).page(params[:page])
   end
 
   def show
@@ -16,7 +16,7 @@ class AppsController < ApplicationController
   end
 
   def search
-    @applists = @p.result.includes([:tags, :price])  # 検索条件にマッチした商品の情報を取得
+    @applists=@p.result.includes([:tags, :price]).page(params[:page])  # 検索条件にマッチした商品の情報を取得
   end
 
   private
@@ -53,7 +53,7 @@ class AppsController < ApplicationController
       h.read
     end
     doc=eval(html)
-    applists=doc[:applist][:apps][4..10]#5個目からアプリ
+    applists=doc[:applist][:apps][4..20]#5個目からアプリ
     applists.each do |applist|
       url = "https://store.steampowered.com/app/#{applist[:appid]}"
       doc = Nokogiri::HTML(open(url),nil,"utf-8")
@@ -64,7 +64,7 @@ class AppsController < ApplicationController
 
       unless price[:game_purchase_price].nil?
         price[:game_purchase_price]=price[:game_purchase_price].to_i/100
-        price[:game_purchase_price]="¥"+price[:game_purchase_price]
+        price[:game_purchase_price]="¥ "+price[:game_purchase_price].to_s
         applist=Applist.create(applist)
         nokogiri_text(doc,price,:discount_pct,"#game_area_purchase .discount_pct")
         nokogiri_text(doc,price,:discount_original_price,"#game_area_purchase .discount_original_price")

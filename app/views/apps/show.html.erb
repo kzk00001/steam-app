@@ -39,30 +39,30 @@
     </section>
 
 
-    <section id="new">
+    <section id="price">
+
+      <h2>Price</h2>
+
+<%=  %>
+                    <% @applist.price.each do |record| %>
+                <%= record.game_purchase_price %>
+                <%= record.created_at %>
+              <% end %>
+      <%= line_chart [ { name: "price", data: @applist.price.map { |record| record.slice(:created_at, :game_purchase_price).values }} ] %>
+
+    </section>
+
+
+        <section id="new">
       <h2>Hot News</h2>
       <dl>
         <% @applist.news.each do |record| %>
-          <dt><%= link_to record.author, record.url %></dt>
+          <dt><%= link_to record.date, record.url %></dt>
           <dd><%= link_to record.title, record.url %></dd>
         <% end %>
       </dl>
     </section>
 
-    <section id="price">
-
-      <h2>Price</h2>
-
-      <% @applist.price.each do |record| %>
-        <%= record.game_purchase_price %>
-        <%= record.discount_pct %>
-        <%= record.discount_original_price %>
-        <%= record.discount_final_price %>
-      <% end %>
-      <%= line_chart [ { name: "price", data: @applist.price.map { |record| record.slice(:created_at, :game_purchase_price).values }} ] %>
-
-
-    </section>
 
   </div>
 </div>

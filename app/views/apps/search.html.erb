@@ -26,8 +26,19 @@
               </div>
 
               <div>
+                <%= app.content.review_summary %>
+              </div>
+
+              <div>
+                <%= app.content.release_date %>
+              </div>
+
+              <div>
               <% app.price.each do |record| %>
                 <%= record.game_purchase_price %>
+                <%= record.discount_pct %>
+                <%= record.discount_original_price %>
+                <%= record.discount_final_price %>
               <% end %>
               </div>
 

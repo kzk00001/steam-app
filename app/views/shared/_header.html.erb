@@ -30,8 +30,8 @@
   <div class='nav'>
     <nav id="menubar">
       <ul>
-        <li><%= sort_link(@p, :content_review_summary, "Recommended") %></li>
-        <li><%= sort_link(@p, :price_discount_pct, "Discounted") %></li>
+        <li><%= sort_link(@p, :content_review_summary, "Recommended", default_order: :desc) %></li>
+        <li><%= sort_link(@p, :price_discount_pct, "Discounted", default_order: :desc) %></li>
         <li><%= sort_link(@p, :content_release_date, "New Releases") %></li>
       </ul>
     </nav>

@@ -7,11 +7,15 @@
 
 
       <div class="list">
-      <%= @applist.name %>
 
       <div>
       <%= image_tag @applist.content.header_image_url %>
       </div>
+
+      <div>
+            <%= @applist.name %>
+      </div>
+
       <div>
       <%= @applist.content.description %>
       </div>
@@ -49,8 +53,13 @@
 
       <h2>Price</h2>
 
-<%= line_chart Price.group_by_day(:game_purchase_price).count id: "column-chart" %>
-
+      <% @applist.price.each do |record| %>
+        <%= record.game_purchase_price %>
+        <%= record.discount_pct %>
+        <%= record.discount_original_price %>
+        <%= record.discount_final_price %>
+      <% end %>
+      <%= line_chart [ { name: "price", data: @applist.price.map { |record| record.slice(:created_at, :game_purchase_price).values }} ] %>
 
 
     </section>

@@ -5,7 +5,7 @@ class AppsController < ApplicationController
   require "nokogiri"
   
   def index
-    # get_app
+    get_app
     @applists=Applist.all.includes([:content, :screenshot_hd, :screenshot_poor, :movie, :tags, :price])
     @applists = @p.result.includes([:tags, :price])
   end
@@ -53,7 +53,7 @@ class AppsController < ApplicationController
       h.read
     end
     doc=eval(html)
-    applists=doc[:applist][:apps][4..100]#5個目からアプリ
+    applists=doc[:applist][:apps][4..10]#5個目からアプリ
     applists.each do |applist|
       url = "https://store.steampowered.com/app/#{applist[:appid]}"
       doc = Nokogiri::HTML(open(url),nil,"utf-8")
@@ -63,6 +63,8 @@ class AppsController < ApplicationController
       nokogiri_target(doc,price,:game_purchase_price,".game_purchase_discount",:"data-price-final")
 
       unless price[:game_purchase_price].nil?
+        price[:game_purchase_price]=price[:game_purchase_price].to_i/100
+        price[:game_purchase_price]="¥"+price[:game_purchase_price]
         applist=Applist.create(applist)
         nokogiri_text(doc,price,:discount_pct,"#game_area_purchase .discount_pct")
         nokogiri_text(doc,price,:discount_original_price,"#game_area_purchase .discount_original_price")

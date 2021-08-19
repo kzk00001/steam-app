@@ -44,7 +44,7 @@
       <h2>Price</h2>
 
 <%=  %>
-                    <% @applist.price.each do |record| %>
+                    <% @applist.price.last(1).each do |record| %>
                 <%= record.game_purchase_price %>
                 <%= record.created_at %>
               <% end %>

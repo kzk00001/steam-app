@@ -34,7 +34,7 @@
               </div>
 
               <div>
-              <% app.price.each do |record| %>
+              <% app.price.last(1).each do |record| %>
                 <%= record.game_purchase_price %>
                 <%= record.discount_pct %>
                 <%= record.discount_original_price %>

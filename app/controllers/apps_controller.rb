@@ -8,7 +8,6 @@ class AppsController < ApplicationController
     get_app
     @applists=Applist.all.includes([:content, :screenshot_hd, :screenshot_poor, :movie, :tags, :price]).page(params[:page])
     @applists=@p.result.includes([:tags, :price]).page(params[:page])
-    binding.pry
   end
 
   def show

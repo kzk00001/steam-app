@@ -8,6 +8,7 @@ class AppsController < ApplicationController
     get_app
     @applists=Applist.all.includes([:content, :screenshot_hd, :screenshot_poor, :movie, :tags, :price]).page(params[:page])
     @applists=@p.result.includes([:tags, :price]).page(params[:page])
+    binding.pry
   end
 
   def show
@@ -52,7 +53,7 @@ class AppsController < ApplicationController
       h.read
     end
     doc=eval(html)
-    applists=doc[:applist][:apps][4..10]#5個目からアプリ
+    applists=doc[:applist][:apps][4..20]#5個目からアプリ
     applists.each do |applist|
       url = "https://store.steampowered.com/app/#{applist[:appid]}"
       doc = Nokogiri::HTML(open(url),nil,"utf-8")

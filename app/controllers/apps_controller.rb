@@ -6,8 +6,11 @@ class AppsController < ApplicationController
   
   def index
     get_app
-    @applists=Applist.all.includes([:content, :screenshot_hd, :screenshot_poor, :movie, :tags, :price]).page(params[:page])
-    @applists=@p.result.includes([:tags, :price]).page(params[:page])
+    if params[:q].nil?
+      @applists=Applist.all.includes([:content, :screenshot_hd, :screenshot_poor, :movie, :tags, :price]).page(params[:page])
+    else
+      @applists=@q.result.includes([:tags, :price]).page(params[:page])
+    end
   end
 
   def show
@@ -22,7 +25,7 @@ class AppsController < ApplicationController
   private
 
   def search_app
-    @p = Applist.ransack(params[:q])  # 検索オブジェクトを生成
+    @q = Applist.ransack(params[:q])  # 検索オブジェクトを生成
     @tag=Tag.order(name: 'ASC')
   end
 
@@ -52,7 +55,7 @@ class AppsController < ApplicationController
       h.read
     end
     doc=eval(html)
-    applists=doc[:applist][:apps][4..20]#5個目からアプリ
+    applists=doc[:applist][:apps][4..10]#5個目からアプリ
     applists.each do |applist|
       url = "https://store.steampowered.com/app/#{applist[:appid]}"
       doc = Nokogiri::HTML(open(url),nil,"utf-8")

@@ -45,7 +45,7 @@ class AppsController < ApplicationController
   end
 
   def get_app
-    Applist.destroy_all
+    # Applist.destroy_all
     uri = "http://api.steampowered.com/ISteamApps/GetAppList/v2"
     charset = nil
     html = open(uri) do |h|
@@ -53,7 +53,7 @@ class AppsController < ApplicationController
       h.read
     end
     doc=eval(html)
-    applists=doc[:applist][:apps][4..10]#5個目からアプリ
+    applists=doc[:applist][:apps][4..8]#5個目からアプリ
     applists.each do |applist|
       url = "https://store.steampowered.com/app/#{applist[:appid]}"
       doc = Nokogiri::HTML(open(url),nil,"utf-8")

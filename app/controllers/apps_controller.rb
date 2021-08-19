@@ -52,7 +52,7 @@ class AppsController < ApplicationController
       h.read
     end
     doc=eval(html)
-    applists=doc[:applist][:apps][4..20]#5個目からアプリ
+    applists=doc[:applist][:apps][4..10]#5個目からアプリ
     applists.each do |applist|
       url = "https://store.steampowered.com/app/#{applist[:appid]}"
       doc = Nokogiri::HTML(open(url),nil,"utf-8")
@@ -60,20 +60,20 @@ class AppsController < ApplicationController
       nokogiri_target(doc,price,:game_purchase_price,".game_purchase_price",:"data-price-final")
       nokogiri_target(doc,price,:game_purchase_price,".game_purchase_discount",:"data-price-final")
       unless price[:game_purchase_price].nil?
-        unless Applist.where(appid: applist[:appid]).exists?
-          applist=Applist.create(applist)
-        else
-          applist=Applist.find_by(applist)
-        end
         price[:game_purchase_price]=price[:game_purchase_price].to_i/100
         price[:game_purchase_price]="¥ "+price[:game_purchase_price].to_s
         nokogiri_text(doc,price,:discount_pct,"#game_area_purchase .discount_pct")
         nokogiri_text(doc,price,:discount_original_price,"#game_area_purchase .discount_original_price")
         nokogiri_text(doc,price,:discount_final_price,"#game_area_purchase .discount_final_price")
-        price[:applist_id]=applist.id
-        Price.create(price)
-        
-        unless Applist.where(appid: applist[:appid]).exists?
+        if Applist.where(appid: applist[:appid]).exists?
+          applist=Applist.find_by(applist)
+          price[:applist_id]=applist.id
+          Price.create(price)
+        else
+          applist=Applist.create(applist)
+          price[:applist_id]=applist.id
+          Price.create(price)
+
           content={}
           nokogiri_text(doc,content,:glance_detail,".glance_details")
           nokogiri_src(doc,content,:header_image_url,".game_header_image_full")

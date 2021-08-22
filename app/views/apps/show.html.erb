@@ -43,31 +43,32 @@
 
       <h2>Price</h2>
 
-<%=  %>
-                    <% @applist.price.last(1).each do |record| %>
-                <%= record.game_purchase_price %>
-                <%= record.created_at %>
-              <% end %>
+      <% @applist.price.last(1).each do |record| %>
+          <%= record.game_purchase_price %>
+          <%= record.created_at %>
+        <% end %>
       <%= line_chart [ { name: "price", data: @applist.price.map { |record| record.slice(:created_at, :game_purchase_price).values }} ] %>
 
     </section>
 
 
-        <section id="new">
+    <section id="news">
+    <% unless @applist.news.blank?%>
       <h2>Hot News</h2>
       <dl>
-        <% @applist.news.each do |record| %>
+        <% @applist.news.last(5).each do |record| %>
           <dt><%= link_to record.date, record.url %></dt>
           <dd><%= link_to record.title, record.url %></dd>
         <% end %>
       </dl>
+    <% end %>
     </section>
 
 
   </div>
 </div>
 
-<%# <%= render "shared/footer" %> %>
+
 
 <footer>
   <small>Copyright&copy; <a href="index.html">SAMPLE COMPANY</a> All Rights Reserved.</small>

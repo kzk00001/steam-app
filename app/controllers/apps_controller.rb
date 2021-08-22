@@ -1,53 +1,33 @@
 class AppsController < ApplicationController
   before_action :search_app
 
-  require "open-uri"
-  require "nokogiri"
-  
   def index
     get_app
     if params[:q].nil?
       @applists=Applist.all.includes([:content, :screenshot_hd, :screenshot_poor, :movie, :tags, :price]).page(params[:page])
     else
-      @applists=@q.result.includes([:tags, :price]).page(params[:page])
+      @applists=@q.result.distinct.includes([:tags, :price]).page(params[:page])
     end
   end
 
   def show
     @applist=Applist.find(params[:id])
-    get_news
   end
 
   def search
-    @applists=@p.result.includes([:tags, :price]).page(params[:page])  # 検索条件にマッチした商品の情報を取得
+    @applists=@q.result.distinct.includes([:tags, :price]).page(params[:page])
   end
 
   private
 
   def search_app
-    @q = Applist.ransack(params[:q])  # 検索オブジェクトを生成
+    @q = Applist.ransack(params[:q])
     @tag=Tag.order(name: 'ASC')
   end
 
-  def get_news
-    uri = "http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=#{@applist[:appid]}&count=#{5}&maxlength=300&format=json"
-    charset = nil
-    html = open(uri) do |h|
-      charset = h.charset
-      h.read
-    end
-    doc=eval(html)
-    appnews=doc[:appnews][:newsitems]
-    appnews.each do |value|
-      value=value.slice(:gid,:title,:url,:author,:contents,:date)
-      value[:applist_id]=@applist.id
-      unless News.where(value).exists?
-        News.create(value)
-      end
-    end
-  end
-
   def get_app
+    require "open-uri"
+    require "nokogiri"
     uri = "http://api.steampowered.com/ISteamApps/GetAppList/v2"
     charset = nil
     html = open(uri) do |h|
@@ -55,7 +35,7 @@ class AppsController < ApplicationController
       h.read
     end
     doc=eval(html)
-    applists=doc[:applist][:apps][4..10]#5個目からアプリ
+    applists=doc[:applist][:apps][4..8]#5個目からアプリの情報
     applists.each do |applist|
       url = "https://store.steampowered.com/app/#{applist[:appid]}"
       doc = Nokogiri::HTML(open(url),nil,"utf-8")
@@ -121,8 +101,24 @@ class AppsController < ApplicationController
               ApplistTag.create(applist_id:applist.id,tag_id:tag.id)
             end
           end
-        end
 
+          uri = "http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=#{applist[:appid]}&count=#{5}&maxlength=300&format=json"
+          charset = nil
+          html = open(uri) do |h|
+            charset = h.charset
+            h.read
+          end
+          doc=eval(html)
+          appnews=doc[:appnews][:newsitems]
+          appnews.each do |value|
+            value=value.slice(:title,:url,:author,:contents,:date)
+            value[:applist_id]=applist.id
+            unless News.where(value).exists?
+              News.create(value)
+            end
+          end
+
+        end
       else
         unless DiscardedApplist.where(appid: applist[:appid]).exists?
           nokogiri_text(doc,applist,:release_date,".date")

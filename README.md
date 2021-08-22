@@ -1,24 +1,32 @@
-# README
+## アプリケーション名
+SteamApp
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## アプリケーション概要
+Steamに登録されたゲームの価格情報を検索できる。
 
-Things you may want to cover:
+## URL
+https://steam-app-36233.herokuapp.com/
 
-* Ruby version
+## テスト用アカウント
+Basic認証
+ID: admin
+Pass: 4805
 
-* System dependencies
+## 利用方法	このアプリケーションの利用方法を記述。
+トップページに20件ずつsteam内に登録されたアプリ情報を表示する。
+クリックすると詳細画面に遷移して、セール情報やニュースの履歴が見れる。
 
-* Configuration
+## 目指した課題解決
+本家steamの検索機能が使いづらかったため、より簡便にした。
+また、購入する際に考慮するセール履歴を確認できるようにした。
 
-* Database creation
+## 洗い出した要件	スプレッドシートにまとめた要件定義を記述。
+![](2021-08-22-18-46-49.png)
 
-* Database initialization
+## 実装した機能についての画像やGIFおよびその説明
 
-* How to run the test suite
+## 実装予定の機能
 
-* Services (job queues, cache servers, search engines, etc.)
+## データベース設計	ER図等を添付。
 
-* Deployment instructions
-
-* ...
+## ローカルでの動作方法

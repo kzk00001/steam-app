@@ -20,7 +20,7 @@
               <div>
                 <ul>
                   <% app.tags.each do |record| %>
-                    <li class=app_tag><%= link_to record.name, "#company" %></li>
+                    <li class=app_tag><%= link_to record.name, controller: "apps", action: "search", q: {tags_name_eq: record.name} %></li>
                   <% end %>
                 </ul>
               </div>
@@ -60,12 +60,9 @@
   </div>
 </div>
 
-<%# <%= render "shared/footer" %>
-
 <footer>
   <small>Copyright&copy; <a href="index.html">SAMPLE COMPANY</a> All Rights Reserved.</small>
   <span class="pr">《<a href="https://template-party.com/" target="_blank">Web Design:Template-Party</a>》</span>
 </footer>
 
-<!--ページの上部に戻る「↑」ボタン-->
 <p class="nav-fix-pos-pagetop"><a href="#">↑</a></p>

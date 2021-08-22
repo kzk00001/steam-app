@@ -60,7 +60,6 @@ ActiveRecord::Schema.define(version: 2021_08_12_034458) do
   end
 
   create_table "news", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "gid"
     t.string "title", null: false
     t.text "url", null: false
     t.string "author"

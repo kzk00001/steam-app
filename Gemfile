@@ -59,3 +59,4 @@ gem 'ransack'
 gem 'chartkick'
 gem 'groupdate'
 gem 'kaminari'
+gem 'whenever', :require => false

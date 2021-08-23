@@ -44,7 +44,6 @@ class AppsController < ApplicationController
       nokogiri_target(doc,price,:game_purchase_price,".game_purchase_discount",:"data-price-final")
       unless price[:game_purchase_price].nil?
         price[:game_purchase_price]=price[:game_purchase_price].to_i/100
-        price[:game_purchase_price]="¥ "+price[:game_purchase_price].to_s
         nokogiri_text(doc,price,:discount_pct,"#game_area_purchase .discount_pct")
         nokogiri_text(doc,price,:discount_original_price,"#game_area_purchase .discount_original_price")
         nokogiri_text(doc,price,:discount_final_price,"#game_area_purchase .discount_final_price")

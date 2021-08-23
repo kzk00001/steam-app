@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2021_08_12_034458) do
     t.text "glance_detail"
     t.text "description"
     t.string "review_summary"
-    t.string "release_date"
+    t.datetime "release_date"
     t.string "developer"
     t.bigint "applist_id", null: false
     t.datetime "created_at", precision: 6, null: false

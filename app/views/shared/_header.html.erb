@@ -31,7 +31,7 @@
       <ul>
         <li><%= sort_link(@q, :content_review_summary, "Recommended", default_order: :desc) %></li>
         <li><%= sort_link(@q, :price_discount_pct, "Discounted", default_order: :desc) %></li>
-        <li><%= sort_link(@q, :content_release_date, "New Releases") %></li>
+        <li><%= sort_link(@q, :content_release_date, "New Releases", default_order: :desc) %></li>
       </ul>
     </nav>
   </div>

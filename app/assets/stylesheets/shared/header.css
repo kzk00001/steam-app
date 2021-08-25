@@ -1,27 +1,83 @@
-/*ヘッダー（一番上の、ロゴやメニューが入っているブロック）
----------------------------------------------------------------------------*/
 header {
-	height: 200px;
+	height: 150px;
 	overflow: auto;
 	position: relative;
-	/*background: url(../images/mainimg.jpg) no-repeat center center / cover;	/*背景画像の読み込み*/
 }
-/*ロゴ画像*/
+
 header #logo img {
 	display: block;
-	width: 10%;	/*画像の幅*/
+	width: 10%;
 	position: absolute;
-	left: 40%;		/*ロゴやメニューが入っているブロックに対して、左からの配置場所の指定。*/
-	bottom: 50%;	/*ロゴやメニューが入っているブロックに対して、下からの配置場所の指定。*/
+	left: 40%;
+	bottom: 50%;
 }
 
+* {
+  box-sizing: border-box;
+}
 
-/*メニュー
----------------------------------------------------------------------------*/
-/*メニューブロック全体への指定*/
+.top-page-header {
+  width: 100vw;
+  padding: 2vh 15vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-bar-contents {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.steamapp-icon {
+  width: 10vw;
+  margin-right: 5vw;
+}
+
+.applist_search {
+  width: 65vw;
+  height: 5vh;
+  display: flex;
+  margin-bottom: 5px;
+  color: #000;
+}
+
+.applist_search>#q_name_cont {
+  width: 100%;
+  height: 5vh;
+  padding-left: 10px;
+  border-radius: 3px;
+}
+
+.applist_search>#q_tags_name_eq {
+  width: 50%;
+  height: 5vh;
+  padding-left: 10px;
+  border-radius: 3px;
+}
+
+.search-button {
+  width: 5vh;
+  border: 0;
+  cursor: pointer;
+  background-color: #696969;
+  padding: 8px;
+}
+
+.search-icon {
+  width: 100%;
+}
+
+.nav {
+  font-size: 18px;
+  display: flex;
+  justify-content: start;
+  flex-wrap: wrap;
+}
+
 #menubar {
 	position: absolute;
-	bottom: 20%;	/*ロゴやメニューが入っているブロックに対して、下からの配置場所の指定。*/
+	bottom: 0%;	/*ロゴやメニューが入っているブロックに対して、下からの配置場所の指定。*/
 	left: 0px;
 	width: 100%;
 	text-align: center;
@@ -46,112 +102,4 @@ header #logo img {
 #menubar li a:hover {
 	border-bottom: 2px solid #fff;	/*下線の幅、線種、色*/
 	letter-spacing: 0.1em;			/*文字間隔を少しだけ広くする指定。そのままがいいならこの１行を削除。*/
-}
-
-
-
-
-* {
-  box-sizing: border-box;
-}
-
-.top-page-header {
-  width: 100vw;
-  padding: 2vh 15vw;
-  display: flex;
-  flex-direction: column;
-}
-
-.search-bar-contents {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.furima-icon {
-  width: 10vw;
-  margin-right: 5vw;
-}
-
-.search-form {
-  width: 65vw;
-  height: 5vh;
-  display: flex;
-  margin-bottom: 5px;
-}
-
-.search-form>.input-box {
-  width: 100%;
-  height: 5vh;
-  padding-left: 10px;
-}
-
-.search-button {
-  width: 5vh;
-  border: 0;
-  cursor: pointer;
-  background-color: #3ccace;
-  padding: 8px;
-}
-
-.search-icon {
-  width: 100%;
-}
-
-.nav {
-  font-size: 18px;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  width: 100%;
-  padding: 1vh 0;
-}
-
-.lists-left {
-  display: flex;
-  min-width: 200px;
-
-}
-
-.category-list {
-  text-decoration: none;
-  margin-right: 3vw;
-  color: #ffffff;
-}
-
-.brand-list {
-  text-decoration: none;
-  color: #ffffff;
-}
-
-.lists-right {
-  display: flex;
-  list-style: none;
-  align-items: flex-end;
-}
-
-
-.user-nickname {
-  text-decoration: none;
-  margin-right: 3vw;
-  color: #333333;
-  font-weight: bold;
-}
-
-
-.logout {
-  text-decoration: none;
-  color: #333333;
-}
-
-.login {
-  text-decoration: none;
-  line-height: 32px;
-  margin-right: 3vw;
-  color: #333333;
-}
-
-.sign-up {
-  text-decoration: none;
-  color: #333333;
 }

@@ -2,60 +2,52 @@
 
 <div id="container">
   <div id="contents">
-    <section id="apps">
-      <h2>Apps</h2>
 
+    <section id="apps">
+      <h3>Apps</h3>
       <% @applists.each do |app| %>
         <div class='list'>
           <%= link_to app_path(app.id) do %>
-            <div class='item-img-content'>
-              <%= image_tag app.content.header_image_url %>
-              <div>
-                <%= app.name %>
-              </div>
-              <div>
-                <%= app.content.description %>
+            <div class='item-content'>
+              <%= image_tag app.content.header_image_url, class: "img" %>
+
+              <div class='item-center'>
+                <h4><%= app.name %></h4>
+                <% if app.content.description.present?%>
+                  <div><%= app.content.description.truncate(150) %></div>
+                <% end %>
+                <div><%= app.content.review_summary %></div>
               </div>
 
-              <div>
-                <ul>
-                  <% app.tags.each do |record| %>
-                    <li class=app_tag><%= link_to record.name, controller: "apps", action: "search", q: {tags_name_eq: record.name} %></li>
+              <div class='item-right'>
+              <div class='price'>
+                <% app.price.last(1).each do |record| %>
+                  <%= record.game_purchase_price %><br>
+                  <% if record.discount_pct.present?%>
+                    <%= record.discount_pct %>
+                    <%= record.discount_original_price %>
+                    <%= record.discount_final_price %>
                   <% end %>
-                </ul>
+                <% end %>
+                </div>
+                <div class='release_date'>
+                <%= app.content.release_date.strftime('%Y/%m/%d') %>
+                </div>
               </div>
-
-              <div>
-                <%= app.content.review_summary %>
-              </div>
-
-              <div>
-                <%= app.content.release_date %>
-              </div>
-
-              <div>
-              <% app.price.last(1).each do |record| %>
-                <%= record.game_purchase_price %>
-                <%= record.discount_pct %>
-                <%= record.discount_original_price %>
-                <%= record.discount_final_price %>
-              <% end %>
-              </div>
-
             </div>
+
+            <div class='item-tag'>
+              <ul><% app.tags.each do |record| %>
+                  <li class=app_tag><%= link_to record.name, controller: "apps", action: "search", q: {tags_name_eq: record.name} %></li>
+                <% end %></ul>
+            </div>
+
           <% end %>
         </div>
       <% end %>
-
-      <div class="list">
-      <img src="images/sample1.jpg" alt="">
-      <h4>ここの見出しのサイズは、cssフォルダのstyle.cssの「.list h4」で変更できます。</h4>
-      <p>左の画像の幅もstyle.cssの「.list img」のwidthの数字で変更できます。</p>
-      </div>
-
     </section>
 
-    <%= paginate @applists %>
+    <div class='pagination-top'><%= paginate @applists %></div>
 
   </div>
 </div>

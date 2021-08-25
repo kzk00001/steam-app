@@ -1,7 +1,4 @@
 @charset "utf-8";
-
-
-
 /*全端末（PC・タブレット・スマホ）共通設定
 ------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -53,22 +50,10 @@ a:hover {
 ---------------------------------------------------------------------------*/
 #contents {
 	overflow: hidden;
-	padding: 50px 3%;
+	padding: 10px 50px 50px;
 }
 #contents section + section {
 	padding-top: 50px;
-}
-/*コンテンツ内にあるh2(見出し)タグの指定*/
-#contents h2 {
-	margin-bottom: 20px;
-	clear: both;
-	padding: 0 20px;
-	font-size: 20px;		/*文字サイズ*/
-	text-align: center;		/*文字をセンタリング*/
-	letter-spacing: 0.1em;	/*文字間隔を少しだけ広くする指定*/
-	background: #222;		/*背景色*/
-	color: #fff;			/*文字色*/
-	border-radius: 100px;	/*角を丸くする指定。大きめであれば適当で構いません。*/
 }
 /*コンテンツ内にあるh3(見出し)タグの指定*/
 #contents h3 {
@@ -79,7 +64,7 @@ a:hover {
 	text-align: center;		/*文字をセンタリング*/
 	letter-spacing: 0.1em;	/*文字間隔を少しだけ広くする指定*/
 	border: 2px solid #222;	/*枠線の幅、線種、色*/
-	border-radius: 100px;	/*角を丸くする指定。大きめであれば適当で構いません。*/
+	border-radius: 50px;	/*角を丸くする指定。大きめであれば適当で構いません。*/
 }
 /*コンテンツ内にあるp(段落)タグ設定*/
 #contents p {
@@ -89,12 +74,11 @@ a:hover {
 #contents p + p {
 	margin-top: -5px;
 }
-#contents h2 + p,
 #contents h3 + p {
 	margin-top: -10px;
 }
 
-/*Serviceページ
+/*Appsページ
 ---------------------------------------------------------------------------*/
 /*各ブロックごとの設定*/
 .list {
@@ -114,85 +98,32 @@ a:hover {
 }
 /*画像の設定*/
 .list img {
+	height: 20%;
 	width: 20%;			/*画像幅*/
 	float: left;		/*画像を左に回り込み*/
 	margin-right: 3%	/*画像の右側に空けるスペース*/
+	
 }
 /*段落タグ*/
 .list p {
 	padding: 0 !important;
 }
 
-/*フッター設定
----------------------------------------------------------------------------*/
-footer {
-	clear: both;
-	text-align: center;
-	background: #222;	/*背景色*/
-	color: #fff;		/*文字色*/
-	font-size: 85%;		/*文字サイズ*/
-}
-footer a {
-	color: #fff;	/*リンクテキストの文字色*/
-	text-decoration: none;
-}
-footer a:hover {
-	color: #fff;	/*マウスオン時の文字色*/
-}
-footer .pr {
-	display: block;
-	font-size: 80%;
-}
-
-/*トップページ内「更新情報・お知らせ」ブロック
+/*newsブロック
 ---------------------------------------------------------------------------*/
 /*ブロック全体の設定*/
-#new dl {
+#news dl {
 	padding-left: 20px;
 	margin-bottom: 15px;
 }
-/*日付設定*/
-#new dt {
-	float: left;
-	width: 9em;
-	letter-spacing: 0.1em;
+/*見出し設定*/
+#news dt {
+	font-size: 120%;
 }
 /*記事設定*/
-#new dd {
-	padding-left: 9em;
-}
-
-/*PAGE TOP（↑）設定
----------------------------------------------------------------------------*/
-body .nav-fix-pos-pagetop a {
-	display: none;
-}
-body.is-fixed-pagetop .nav-fix-pos-pagetop a {
-	display: block;text-decoration: none;text-align: center;position: fixed;animation-name: opa1;animation-duration: 1s;animation-fill-mode: forwards;
-	width: 60px;		/*ボタンの幅*/
-	line-height: 60px;	/*ボタンの高さ*/
-	bottom: 50px;		/*画面の下からの配置場所指定*/
-	right: 3%;			/*画面の右からの配置場所指定*/
-	background: #555;	/*背景色（古いブラウザ用）*/
-	background: rgba(0,0,0,0.5);	/*背景色。0,0,0は黒の事で、0.5は色が50%出た状態の事。*/
-	color: #fff;		/*文字色*/
-	border-radius: 50%;	/*円形にする指定。この１行を削除すると正方形になります。*/
-}
-body.is-fixed-pagetop .nav-fix-pos-pagetop a:hover {
-	background: #999;	/*マウスオン時の背景色*/
-}
-
-/*トップページのNEWアイコン
----------------------------------------------------------------------------*/
-.newicon {
-	background: #F00;	/*背景色*/
-	color: #FFF;		/*文字色*/
-	font-size: 70%;
-	line-height: 1.5;
-	padding: 2px 5px;
-	border-radius: 2px;
-	margin: 0px 5px;
-	vertical-align: text-top;
+#news dd {
+	margin-bottom: 20px;
+	font-size: 90%;
 }
 
 /*ul.disc,olタグ
@@ -222,9 +153,6 @@ ul.disc {padding: 0em 25px 15px 40px;list-style: disc;}
 .mini1 {font-size: 11px;display: inline-block;line-height: 1.5;}
 .sh {display: none;}
 
-
-
-
 /*画面幅800px以下の設定
 ------------------------------------------------------------------------------------------------------------------------------------------------------*/
 @media screen and (max-width:800px){
@@ -238,8 +166,6 @@ header #logo img {
 }
 
 }
-
-
 
 /*画面幅480px以下の設定
 ------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -291,10 +217,62 @@ ol {
 ---------------------------------------------------------------------------*/
 .ws {width: 96%;}
 .big1 {font-size: 22px;letter-spacing: normal;}
+}
 
+/*その他レイアウト
+---------------------------------------------------------------------------*/
+.item-content {
+	display: flex;
+	margin-bottom: 20px;
+}
+.item-center {
+	margin-right: 30px;
+}
+.item-right {
+	display: block;
+	margin-left: auto;
+	text-align:right;
 }
 
 
+.pagination-top{
+	text-align:center;
+}
+/*ページネーション自体のデザイン*/
+.pagination>li>a {          
+  color: #fff;   /*文字の色を変える*/
+	background-color: transparent;
+}
+/* 表示しているページ番号のデザイン */
+.pagination>.active>a {     
+	color: #fff;   /*文字の色を変える*/
+	border-color: #fff;
+  background: #696969;     /*背景の色を変える*/
+}
+/*ホバー時のデザイン*/
+.pagination>li>a:hover {        
+	color: #fff;   /*文字の色を変える*/
+	background-color:#696969; 	/*リンクにマウスが乗ったら背景色を変更する*/
+}
+
+/*ジャンルタグ
+---------------------------------------------------------------------------*/
+.app_tag {
+	display: inline-block;
+	line-height: 19px;
+	padding: 0 7px;
+	color: #67c1f5;
+	background-color: #393939;
+	box-shadow: none;
+	margin-right: 2px;
+	border-radius: 2px;
+	cursor: pointer;
+	margin-bottom: 3px;
+	max-width: 200px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
 
 
 /*サムネイル表示のjava
@@ -335,28 +313,43 @@ ol {
 /* IE用 ↓*/
 #navi li a:hover img {filter:alpha(opacity=80);}
 
-
-
-
-
-
-/*タグ
+/*フッター設定
 ---------------------------------------------------------------------------*/
-.app_tag {
-	display: inline-block;
-	line-height: 19px;
-	padding: 0 7px;
-	color: #67c1f5;
-	background-color: rgba( 103, 193, 245, 0.2 );
-	box-shadow: none;
-	margin-right: 2px;
-	border-radius: 2px;
-	cursor: pointer;
-	margin-bottom: 3px;
-	max-width: 200px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+footer {
+	clear: both;
+	text-align: center;
+	background: #222;	/*背景色*/
+	color: #fff;		/*文字色*/
+	font-size: 85%;		/*文字サイズ*/
+}
+footer a {
+	color: #fff;	/*リンクテキストの文字色*/
+	text-decoration: none;
+}
+footer a:hover {
+	color: #fff;	/*マウスオン時の文字色*/
+}
+footer .pr {
+	display: block;
+	font-size: 80%;
 }
 
-
+/*PAGE TOP（↑）設定
+---------------------------------------------------------------------------*/
+body .nav-fix-pos-pagetop a {
+	display: none;
+}
+body.is-fixed-pagetop .nav-fix-pos-pagetop a {
+	display: block;text-decoration: none;text-align: center;position: fixed;animation-name: opa1;animation-duration: 1s;animation-fill-mode: forwards;
+	width: 60px;		/*ボタンの幅*/
+	line-height: 60px;	/*ボタンの高さ*/
+	bottom: 50px;		/*画面の下からの配置場所指定*/
+	right: 3%;			/*画面の右からの配置場所指定*/
+	background: #555;	/*背景色（古いブラウザ用）*/
+	background: rgba(0,0,0,0.5);	/*背景色。0,0,0は黒の事で、0.5は色が50%出た状態の事。*/
+	color: #fff;		/*文字色*/
+	border-radius: 50%;	/*円形にする指定。この１行を削除すると正方形になります。*/
+}
+body.is-fixed-pagetop .nav-fix-pos-pagetop a:hover {
+	background: #999;	/*マウスオン時の背景色*/
+}

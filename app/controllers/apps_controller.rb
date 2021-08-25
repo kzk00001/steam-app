@@ -35,7 +35,7 @@ class AppsController < ApplicationController
       h.read
     end
     doc=eval(html)
-    applists=doc[:applist][:apps][4..5]#5個目からアプリの情報
+    applists=doc[:applist][:apps][4..10]#5個目からアプリの情報
     applists.each do |applist|
       url = "https://store.steampowered.com/app/#{applist[:appid]}"
       doc = Nokogiri::HTML(open(url),nil,"utf-8")

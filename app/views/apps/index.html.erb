@@ -31,14 +31,14 @@
                       <div class='item-discount_original_price'><%= record.discount_original_price %></div>
                       <div class='item-review_summary'><%= record.discount_final_price %></div>
                     <% else %>
-                      <div class='item-review_summary'><%= record.game_purchase_price %></div>
+                      <div class='item-review_summary'>¥ <%= record.game_purchase_price %></div>
                     <% end %>
                   <% end %>
                 </div>
                 <div class='store_page'>
                   <%# <%= link_to 'store page', "https://store.steampowered.com/app/#{app.appid}", class: "store" %>
                 </div>
-                <div class='release_date'>
+                <div class='item-review_summary'>
                   <%= app.content.release_date.strftime('%Y/%m/%d') %>
                 </div>
               </div>

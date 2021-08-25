@@ -9,31 +9,40 @@
         <div class='list'>
           <%= link_to app_path(app.id) do %>
             <div class='item-content'>
-              <%= image_tag app.content.header_image_url, class: "img" %>
+              <%# <div class='item-img'> %>
+                <%= image_tag app.content.header_image_url, class: "img" %>
+              <%# </div> %>
 
               <div class='item-center'>
                 <h4><%= app.name %></h4>
+                <div class='item-review_summary'><%= app.content.review_summary %></div>
                 <% if app.content.description.present?%>
-                  <div><%= app.content.description.truncate(150) %></div>
+                  <div class='item-description'>
+                    <%= app.content.description.truncate(150) %>
+                  </div>
                 <% end %>
-                <div><%= app.content.review_summary %></div>
               </div>
 
               <div class='item-right'>
-              <div class='price'>
-                <% app.price.last(1).each do |record| %>
-                  <%= record.game_purchase_price %><br>
-                  <% if record.discount_pct.present?%>
-                    <%= record.discount_pct %>
-                    <%= record.discount_original_price %>
-                    <%= record.discount_final_price %>
+                <div class='price'>
+                  <% app.price.last(1).each do |record| %>
+                    <% if record.discount_pct.present?%>
+                      <div class='item-review_summary'><%= record.discount_pct %></div>
+                      <div class='item-discount_original_price'><%= record.discount_original_price %></div>
+                      <div class='item-review_summary'><%= record.discount_final_price %></div>
+                    <% else %>
+                      <div class='item-review_summary'><%= record.game_purchase_price %></div>
+                    <% end %>
                   <% end %>
-                <% end %>
+                </div>
+                <div class='store_page'>
+                  <%# <%= link_to 'store page', "https://store.steampowered.com/app/#{app.appid}", class: "store" %> %>
                 </div>
                 <div class='release_date'>
-                <%= app.content.release_date.strftime('%Y/%m/%d') %>
+                  <%= app.content.release_date.strftime('%Y/%m/%d') %>
                 </div>
               </div>
+
             </div>
 
             <div class='item-tag'>

@@ -228,10 +228,35 @@ ol {
 .item-center {
 	margin-right: 30px;
 }
+.item-review_summary{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	display: inline-block;
+	line-height: 19px;
+	padding: 0 7px;
+	color: #67c1f5;
+	background-color: #393939;
+	box-shadow: none;
+	margin-right: 2px;
+	border-radius: 2px;
+	cursor: pointer;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.item-description{
+	margin-bottom: 5px;
+}
 .item-right {
-	display: block;
+	/* display: block; */
 	margin-left: auto;
 	text-align:right;
+}
+.item-discount_original_price {
+	text-decoration: line-through;
+}
+.store_page{
+	display: block;
 }
 
 

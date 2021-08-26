@@ -1,6 +1,8 @@
 <header class='top-page-header'>
   <div class='search-bar-contents'>
-    <div><%= link_to image_tag("logo_transparent.png", class:"steamapp-icon"), "/" %></div>
+    <div class='icon'>
+      <%= link_to image_tag("logo_transparent.png"), "/" %>
+    </div>
 
     <%= search_form_for @q, url: search_apps_path do |f| %>
       <%= f.search_field :name_cont %>

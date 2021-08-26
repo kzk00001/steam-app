@@ -29,9 +29,9 @@ header #logo img {
   align-items: center;
 }
 
-.steamapp-icon {
-  width: 10vw;
-  margin-right: 5vw;
+.icon {
+  width: 150px;
+  margin-right: 3vw;
 }
 
 .applist_search {

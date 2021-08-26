@@ -64,7 +64,7 @@ a:hover {
 	text-align: center;		/*文字をセンタリング*/
 	letter-spacing: 0.1em;	/*文字間隔を少しだけ広くする指定*/
 	border: 2px solid #222;	/*枠線の幅、線種、色*/
-	border-radius: 50px;	/*角を丸くする指定。大きめであれば適当で構いません。*/
+	border-radius: 10px;	/*角を丸くする指定。大きめであれば適当で構いません。*/
 }
 /*コンテンツ内にあるp(段落)タグ設定*/
 #contents p {
@@ -102,28 +102,10 @@ a:hover {
 	width: 20%;			/*画像幅*/
 	float: left;		/*画像を左に回り込み*/
 	margin-right: 3%	/*画像の右側に空けるスペース*/
-	
 }
 /*段落タグ*/
 .list p {
 	padding: 0 !important;
-}
-
-/*newsブロック
----------------------------------------------------------------------------*/
-/*ブロック全体の設定*/
-#news dl {
-	padding-left: 20px;
-	margin-bottom: 15px;
-}
-/*見出し設定*/
-#news dt {
-	font-size: 120%;
-}
-/*記事設定*/
-#news dd {
-	margin-bottom: 20px;
-	font-size: 90%;
 }
 
 /*ul.disc,olタグ
@@ -235,10 +217,7 @@ ol {
 	line-height: 19px;
 	padding: 0 7px;
 	color: #67c1f5;
-	background-color: #393939;
 	box-shadow: none;
-	margin-right: 2px;
-	border-radius: 2px;
 	cursor: pointer;
 	white-space: nowrap;
 	overflow: hidden;
@@ -247,19 +226,88 @@ ol {
 .item-description{
 	margin-bottom: 5px;
 }
+
 .item-right {
-	/* display: block; */
 	margin-left: auto;
 	text-align:right;
+}
+.item-discount_pct{
+	display: inline-block;
+	height: 32px;
+	line-height: 32px;
+	font-size: 25px;
+	text-align: center;
+	overflow: hidden;
+	padding: 0 6px;
+	background-color: #6fa720;
+}
+.item-game_purchase_price {
+	display: inline-block;
+	height: 32px;
+	line-height: 32px;
+	font-size: 20px;
+	text-align: center;
+	overflow: hidden;
+	padding: 0 6px;
+	background-color:#696969; 	/*リンクにマウスが乗ったら背景色を変更する*/
 }
 .item-discount_original_price {
 	text-decoration: line-through;
 }
-.store_page{
-	display: block;
+.item-release_date{
+	font-size: 14px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	display: inline-block;
+	line-height: 19px;
+	color: #fff;
+	box-shadow: none;
+	margin-right: 2px;
+	border-radius: 2px;
+	cursor: pointer;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
+.item-bottom {
+	display: flex;
+}
+.item-tag {
+	margin-right: 30px;
+}
+.app_tag {
+	display: inline-block;
+	line-height: 19px;
+	padding: 0 7px;
+	color: #67c1f5;
+	background-color: #393939;
+	box-shadow: none;
+	margin-right: 2px;
+	border-radius: 2px;
+	cursor: pointer;
+	margin-bottom: 3px;
+	max-width: 200px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.store_page{
+	display: block;
+	margin-left: auto;
+}
+.store_button{
+	display: inline-block;
+	height: 32px;
+	font-size: 20px;
+	text-align: center;
+	overflow: hidden;
+	padding: 0 6px;
+	border: 1px solid #fff;	/*枠線の幅、線種、色*/
+}
 
+/*ページネーション
+---------------------------------------------------------------------------*/
 .pagination-top{
 	text-align:center;
 }
@@ -280,25 +328,24 @@ ol {
 	background-color:#696969; 	/*リンクにマウスが乗ったら背景色を変更する*/
 }
 
-/*ジャンルタグ
+/*newsブロック
 ---------------------------------------------------------------------------*/
-.app_tag {
-	display: inline-block;
-	line-height: 19px;
-	padding: 0 7px;
-	color: #67c1f5;
-	background-color: #393939;
-	box-shadow: none;
-	margin-right: 2px;
-	border-radius: 2px;
-	cursor: pointer;
-	margin-bottom: 3px;
-	max-width: 200px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+/*ブロック全体の設定*/
+#news dl {
+	padding-left: 20px;
+	margin-bottom: 15px;
 }
-
+/*見出し設定*/
+#news dt {
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+/*記事設定*/
+#news dd {
+	margin-bottom: 20px;
+	font-size: 16px;
+	padding: 0 7px;
+}
 
 /*サムネイル表示のjava
 ---------------------------------------------------------------------------*/

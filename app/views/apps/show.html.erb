@@ -2,38 +2,66 @@
 
 <div id="container">
   <div id="contents">
+
     <section id="apps">
       <h3>Apps</h3>
-      <div class="list">
+      <div class='list'>
+        <%= link_to app_path(@applist.id) do %>
+          <div class='item-content'>
+            <%= image_tag @applist.content.header_image_url, class: "img" %>
 
-      <div>
-      <%= image_tag @applist.content.header_image_url %>
-      </div>
+            <div class='item-center'>
+              <h4><%= @applist.name %></h4>
+              <div class='item-review_summary'><%= @applist.content.review_summary %></div>
+              <% if @applist.content.description.present?%>
+                <div class='item-description'>
+                  <%= @applist.content.description.truncate(150) %>
+                </div>
+              <% end %>
+            </div>
 
-      <div>
-        <%= @applist.name %>
-      </div>
+            <div class='item-right'>
+              <div class='price'>
+                <% @applist.price.last(1).each do |record| %>
+                  <% if record.discount_pct.present?%>
+                    <div class='item-discount_pct'><%= record.discount_pct %></div>
+                    <div class='item-discount_original_price'><%= record.discount_original_price %></div>
+                    <div class='item-game_purchase_price'><%= record.discount_final_price %></div>
+                  <% else %>
+                    <div class='item-game_purchase_price'>¥ <%= record.game_purchase_price %></div>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class='item-release_date'>
+                Release date:<br><%= @applist.content.release_date.strftime('%Y/%m/%d') %>
+              </div>
+            </div>
+          </div>
 
-      <div>
-      <%= @applist.content.description %>
-      </div>
+          <div class='item-bottom'>
+              <div class='item-tag'>
+                <ul><% @applist.tags.each do |record| %>
+                  <li class=app_tag><%= link_to record.name, controller: "apps", action: "search", q: {tags_name_eq: record.name} %></li>
+                <% end %></ul>
+              </div>
+            <div class='store_page'>
+              <%= link_to 'Store page', "https://store.steampowered.com/app/#{@applist.appid}", class: "store_button" %>
+            </div>
+          </div>
 
-      <h4>ここの見出しのサイズは、cssフォルダのstyle.cssの「.list h4」で変更できます。</h4>
-      <p>左の画像の幅もstyle.cssの「.list img」のwidthの数字で変更できます。</p>
-      </div>
-
-
-      <div id="photo">
-        <img src="<%=@applist.screenshot_hd[0].url%>" alt="orange" width="700" height="350">
-      </div>
-      <div id="navi">
-        <ul class="ex_clearfix">
-        <% @applist.screenshot_hd.zip(@applist.screenshot_poor) do |screenshot_hd, screenshot_poor| %>
-          <li><a href="<%=screenshot_hd.url%>"><img src="<%=screenshot_poor.url%>" width="60" height="60"></a></li>
         <% end %>
-        </ul>
+
+        <div id="photo">
+          <img src="<%=@applist.screenshot_hd[0].url%>" alt="orange" width="700" height="350">
+        </div>
+        <div id="navi">
+          <ul class="ex_clearfix">
+          <% @applist.screenshot_hd.zip(@applist.screenshot_poor) do |screenshot_hd, screenshot_poor| %>
+            <li><a href="<%=screenshot_hd.url%>"><img src="<%=screenshot_poor.url%>" width="60" height="60"></a></li>
+          <% end %>
+          </ul>
+        </div>
       </div>
-      
     </section>
 
     <section id="price">
@@ -45,16 +73,16 @@
       <% unless @applist.news.blank?%>
         <h3>Hot News</h3>
         <dl><% @applist.news.last(5).each do |record| %>
-          <dt><%= link_to record.title, record.url %></dt>
-          <dd><%= link_to record.contents, record.url %></dd>
-          <% end %></dl>
+          <%= link_to record.url do%>
+            <dt><%= record.title %></dt>
+            <dd>&nbsp;<%= record.contents %></dd>
+          <% end %>
+        <% end %></dl>
       <% end %>
     </section>
 
   </div>
 </div>
-
-
 
 <footer>
   <small>Copyright&copy; <a href="index.html">SAMPLE COMPANY</a> All Rights Reserved.</small>

@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_08_12_034458) do
 
-  create_table "applist_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "applist_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "applist_id", null: false
     t.bigint "tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -21,14 +21,14 @@ ActiveRecord::Schema.define(version: 2021_08_12_034458) do
     t.index ["tag_id"], name: "index_applist_tags_on_tag_id"
   end
 
-  create_table "applists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "applists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "appid", null: false
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "contents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "contents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.text "header_image_url", null: false
     t.text "glance_detail"
     t.text "description"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2021_08_12_034458) do
     t.index ["applist_id"], name: "index_contents_on_applist_id"
   end
 
-  create_table "discarded_applists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "discarded_applists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "appid", null: false
     t.string "name", null: false
     t.string "release_date"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2021_08_12_034458) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "movies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "movies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.text "url"
     t.bigint "applist_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2021_08_12_034458) do
     t.index ["applist_id"], name: "index_movies_on_applist_id"
   end
 
-  create_table "news", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "news", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "title", null: false
     t.text "url", null: false
     t.string "author"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 2021_08_12_034458) do
     t.index ["applist_id"], name: "index_news_on_applist_id"
   end
 
-  create_table "prices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "prices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "game_purchase_price"
     t.string "discount_pct"
     t.string "discount_original_price"
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 2021_08_12_034458) do
     t.index ["applist_id"], name: "index_prices_on_applist_id"
   end
 
-  create_table "screenshot_hds", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "screenshot_hds", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.text "url", null: false
     t.bigint "applist_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 2021_08_12_034458) do
     t.index ["applist_id"], name: "index_screenshot_hds_on_applist_id"
   end
 
-  create_table "screenshot_poors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "screenshot_poors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.text "url", null: false
     t.bigint "applist_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 2021_08_12_034458) do
     t.index ["applist_id"], name: "index_screenshot_poors_on_applist_id"
   end
 
-  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -64,7 +64,7 @@ a:hover {
 	text-align: center;		/*文字をセンタリング*/
 	letter-spacing: 0.1em;	/*文字間隔を少しだけ広くする指定*/
 	border: 2px solid #222;	/*枠線の幅、線種、色*/
-	border-radius: 10px;	/*角を丸くする指定。大きめであれば適当で構いません。*/
+	border-radius: 5px;	/*角を丸くする指定。大きめであれば適当で構いません。*/
 }
 /*コンテンツ内にあるp(段落)タグ設定*/
 #contents p {

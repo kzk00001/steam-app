@@ -275,6 +275,7 @@ ol {
 }
 .item-tag {
 	margin-right: 30px;
+	width:95%;
 }
 .app_tag {
 	display: inline-block;
@@ -293,7 +294,8 @@ ol {
 	text-overflow: ellipsis;
 }
 .store_page{
-	display: block;
+	display: inline-block;
+	width:100px;
 	margin-left: auto;
 }
 .store_button{
@@ -301,8 +303,9 @@ ol {
 	height: 32px;
 	font-size: 20px;
 	text-align: center;
+	vertical-align:middle;
 	overflow: hidden;
-	padding: 0 6px;
+	padding: 0 20px;
 	border: 1px solid #fff;	/*枠線の幅、線種、色*/
 }
 
@@ -326,6 +329,9 @@ ol {
 .pagination>li>a:hover {        
 	color: #fff;   /*文字の色を変える*/
 	background-color:#696969; 	/*リンクにマウスが乗ったら背景色を変更する*/
+}
+.pagination>.disabled>a{
+	background-color: transparent;
 }
 
 /*newsブロック
@@ -366,8 +372,8 @@ ol {
 } */
 
 #navi li{
-	/* width:200px; */
-	/* height:200px; */
+	width:100px;
+	/* height:100px; */
 	float:left;
 	background:none;
 	padding:0 10px 0px 0;
@@ -376,6 +382,12 @@ ol {
 
 #navi li a{
 	display:block;
+}
+
+#navi li img{
+	display:block;
+	width:100%;
+	height:100%;
 }
 
 #navi li a:link    {}

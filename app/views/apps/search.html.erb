@@ -5,58 +5,12 @@
 
     <section id="apps">
       <h3>Apps</h3>
-      <% @applists.each do |app| %>
-        <div class='list'>
-          <%= link_to app_path(app.id) do %>
-            <div class='item-content'>
-              <%= image_tag app.content.header_image_url, class: "img" %>
-
-              <div class='item-center'>
-                <h4><%= app.name %></h4>
-                <div class='item-review_summary'><%= app.content.review_summary %></div>
-                <% if app.content.description.present?%>
-                  <div class='item-description'>
-                    <%= app.content.description.truncate(150) %>
-                  </div>
-                <% end %>
-              </div>
-
-              <div class='item-right'>
-                <div class='price'>
-                  <% app.price.last(1).each do |record| %>
-                    <% if record.discount_pct.present?%>
-                      <div class='item-discount_pct'><%= record.discount_pct %></div>
-                      <div class='item-discount_original_price'><%= record.discount_original_price %></div>
-                      <div class='item-game_purchase_price'><%= record.discount_final_price %></div>
-                    <% else %>
-                      <div class='item-game_purchase_price'>¥ <%= record.game_purchase_price %></div>
-                    <% end %>
-                  <% end %>
-                </div>
-                <div class='item-release_date'>
-                  Release date:<br><%= app.content.release_date.strftime('%Y/%m/%d') %>
-                </div>
-              </div>
-            </div>
-
-            <div class='item-bottom'>
-              <div class='item-tag'>
-                <ul><% app.tags.each do |record| %>
-                  <li class=app_tag><%= link_to record.name, controller: "apps", action: "search", q: {tags_name_eq: record.name} %></li>
-                <% end %></ul>
-              </div>
-              <div class='store_page'>
-                <%= link_to 'Store', "https://store.steampowered.com/app/#{app.appid}", class: "store_button" %>
-              </div>
-            </div>
-
-          <% end %>
-        </div>
+      <% @applists.each do |applist| %>
+        <%= render partial: 'shared/applist', locals: { applist: applist } %>
       <% end %>
     </section>
 
     <div class='pagination-top'><%= paginate @applists %></div>
-
   </div>
 </div>
 

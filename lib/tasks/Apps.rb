@@ -17,8 +17,28 @@ class Apps
       h.read
     end
     doc=eval(html)
-    applists=doc[:applist][:apps][4..100]#5個目からアプリの情報
-    binding.pry
+    applists=doc[:applist][:apps][4..-1]#5個目からアプリの情報
+    increment=100#1度にスクレイピングするアプリの数
+    if WebScraping.order(updated_at: :desc).limit(1).blank?
+      scraped_num=0
+      index=[scraped_num+1..scraped_num+increment]
+    else
+      web_scraping=WebScraping.order(updated_at: :desc).limit(1)
+      scraped_num=web_scraping[0][:scraped_num].to_i
+      if scraped_num+increment>applists.length
+        increment=applists.length-scraped_num
+        index=[scraped_num+1..scraped_num+increment]
+        scraped_num=0
+      else
+        scraped_num+=increment
+        index=[scraped_num+1..scraped_num+increment]
+      end
+    end
+    web_scraping={}
+    web_scraping[:applists_length]=applists.length
+    web_scraping[:scraped_num]=scraped_num
+    WebScraping.create(web_scraping)
+    applists=applists[index[0]]
     applists.each do |applist|
       url = "https://store.steampowered.com/app/#{applist[:appid]}"
       doc = Nokogiri::HTML(open(url),nil,"utf-8")

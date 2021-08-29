@@ -53,7 +53,7 @@ a:hover {
 	padding: 10px 50px 50px;
 }
 #contents section + section {
-	padding-top: 50px;
+	padding-top: 20px;
 }
 /*コンテンツ内にあるh3(見出し)タグの指定*/
 #contents h3 {
@@ -108,100 +108,7 @@ a:hover {
 	padding: 0 !important;
 }
 
-/*ul.disc,olタグ
----------------------------------------------------------------------------*/
-ul.disc {
-	list-style: disc;
-	padding: 0 20px 20px 55px;
-}
-ol {
-	padding: 0 20px 20px 42px;
-}
-
-/*その他
----------------------------------------------------------------------------*/
-.look {background: #fff;border: 1px solid #ccc;padding: 5px 10px;border-radius: 4px;}
-.mb15,.mb1em {margin-bottom: 15px;}
-.clear {clear: both;}
-ul.disc {padding: 0em 25px 15px 40px;list-style: disc;}
-.color1, .color1 a {color: #ff4765;}
-.pr {font-size: 10px;}
-.wl {width: 96%;}
-.ws {width: 50%;}
-.c {text-align: center;}
-.r {text-align: right;}
-.l {text-align: left;}
-.big1 {font-size: 40px;letter-spacing: 0.2em;}
-.mini1 {font-size: 11px;display: inline-block;line-height: 1.5;}
-.sh {display: none;}
-
-/*画面幅800px以下の設定
-------------------------------------------------------------------------------------------------------------------------------------------------------*/
-@media screen and (max-width:800px){
-
-/*ヘッダー（一番上の、ロゴやメニューが入っているブロック）
----------------------------------------------------------------------------*/
-/*ロゴ画像*/
-header #logo img {
-	width: 30%;	/*画像の幅*/
-	left: 35%;	/*ロゴやメニューが入っているブロックに対して、左からの配置場所の指定。*/
-}
-
-}
-
-/*画面幅480px以下の設定
-------------------------------------------------------------------------------------------------------------------------------------------------------*/
-@media screen and (max-width:480px){
-
-/*ヘッダー（一番上の、ロゴやメニューが入っているブロック）
----------------------------------------------------------------------------*/
-/*ロゴ画像*/
-header #logo img {
-	width: 50%;	/*画像の幅*/
-	left: 25%;	/*ロゴやメニューが入っているブロックに対して、左からの配置場所の指定。*/
-}
-
-/*コンテナー（headerとfooterをのぞくブロックを囲むブロック）
----------------------------------------------------------------------------*/
-#container {
-	font-size: 12px;
-	font-size: 2.93vw;
-}
-
-/*コンテンツ（上のcontainerの中のブロック）
----------------------------------------------------------------------------*/
-/*コンテンツ内にあるh2(見出し)タグの指定*/
-#contents h2 {
-	font-size: 16px;	/*文字サイズ*/
-}
-/*コンテンツ内にあるh3(見出し)タグの指定*/
-#contents h3 {
-	font-size: 14px;	/*文字サイズ*/
-}
-
-/*Serviceページ
----------------------------------------------------------------------------*/
-/*h4見出しの設定*/
-.list h4 {
-	font-size: 16px;	/*文字サイズ*/
-}
-
-/*ul.disc,olタグ
----------------------------------------------------------------------------*/
-ul.disc {
-	padding: 0 0px 20px 35px;
-}
-ol {
-	padding: 0 0px 20px 35px;
-}
-
-/*その他
----------------------------------------------------------------------------*/
-.ws {width: 96%;}
-.big1 {font-size: 22px;letter-spacing: normal;}
-}
-
-/*その他レイアウト
+/*Appsのレイアウト
 ---------------------------------------------------------------------------*/
 .item-content {
 	display: flex;
@@ -309,29 +216,14 @@ ol {
 	border: 1px solid #fff;	/*枠線の幅、線種、色*/
 }
 
-/*ページネーション
----------------------------------------------------------------------------*/
-.pagination-top{
-	text-align:center;
+#screenshots {
+
 }
-/*ページネーション自体のデザイン*/
-.pagination>li>a {          
-  color: #fff;   /*文字の色を変える*/
-	background-color: transparent;
+#price {
+
 }
-/* 表示しているページ番号のデザイン */
-.pagination>.active>a {     
-	color: #fff;   /*文字の色を変える*/
-	border-color: #fff;
-  background: #696969;     /*背景の色を変える*/
-}
-/*ホバー時のデザイン*/
-.pagination>li>a:hover {        
-	color: #fff;   /*文字の色を変える*/
-	background-color:#696969; 	/*リンクにマウスが乗ったら背景色を変更する*/
-}
-.pagination>.disabled>a{
-	background-color: transparent;
+#news {
+
 }
 
 /*newsブロック
@@ -396,6 +288,124 @@ ol {
 #navi li a:active  {opacity:0.8;}
 /* IE用 ↓*/
 #navi li a:hover img {filter:alpha(opacity=80);}
+
+/*ページネーション
+---------------------------------------------------------------------------*/
+.pagination-top{
+	text-align:center;
+}
+/*ページネーション自体のデザイン*/
+.pagination>li>a {          
+  color: #fff;   /*文字の色を変える*/
+	background-color: transparent;
+}
+/* 表示しているページ番号のデザイン */
+.pagination>.active>a {     
+	color: #fff;   /*文字の色を変える*/
+	border-color: #fff;
+  background: #696969;     /*背景の色を変える*/
+}
+/*ホバー時のデザイン*/
+.pagination>li>a:hover {        
+	color: #fff;   /*文字の色を変える*/
+	background-color:#696969; 	/*リンクにマウスが乗ったら背景色を変更する*/
+}
+.pagination>.disabled>a{
+	background-color: transparent;
+}
+
+/*ul.disc,olタグ
+---------------------------------------------------------------------------*/
+ul.disc {
+	list-style: disc;
+	padding: 0 20px 20px 55px;
+}
+ol {
+	padding: 0 20px 20px 42px;
+}
+
+/*その他
+---------------------------------------------------------------------------*/
+.look {background: #fff;border: 1px solid #ccc;padding: 5px 10px;border-radius: 4px;}
+.mb15,.mb1em {margin-bottom: 15px;}
+.clear {clear: both;}
+ul.disc {padding: 0em 25px 15px 40px;list-style: disc;}
+.color1, .color1 a {color: #ff4765;}
+.pr {font-size: 10px;}
+.wl {width: 96%;}
+.ws {width: 50%;}
+.c {text-align: center;}
+.r {text-align: right;}
+.l {text-align: left;}
+.big1 {font-size: 40px;letter-spacing: 0.2em;}
+.mini1 {font-size: 11px;display: inline-block;line-height: 1.5;}
+.sh {display: none;}
+
+/*画面幅800px以下の設定
+------------------------------------------------------------------------------------------------------------------------------------------------------*/
+@media screen and (max-width:800px){
+
+/*ヘッダー（一番上の、ロゴやメニューが入っているブロック）
+---------------------------------------------------------------------------*/
+/*ロゴ画像*/
+header #logo img {
+	width: 30%;	/*画像の幅*/
+	left: 35%;	/*ロゴやメニューが入っているブロックに対して、左からの配置場所の指定。*/
+}
+
+}
+
+/*画面幅480px以下の設定
+------------------------------------------------------------------------------------------------------------------------------------------------------*/
+@media screen and (max-width:480px){
+
+/*ヘッダー（一番上の、ロゴやメニューが入っているブロック）
+---------------------------------------------------------------------------*/
+/*ロゴ画像*/
+header #logo img {
+	width: 50%;	/*画像の幅*/
+	left: 25%;	/*ロゴやメニューが入っているブロックに対して、左からの配置場所の指定。*/
+}
+
+/*コンテナー（headerとfooterをのぞくブロックを囲むブロック）
+---------------------------------------------------------------------------*/
+#container {
+	font-size: 12px;
+	font-size: 2.93vw;
+}
+
+/*コンテンツ（上のcontainerの中のブロック）
+---------------------------------------------------------------------------*/
+/*コンテンツ内にあるh2(見出し)タグの指定*/
+#contents h2 {
+	font-size: 16px;	/*文字サイズ*/
+}
+/*コンテンツ内にあるh3(見出し)タグの指定*/
+#contents h3 {
+	font-size: 14px;	/*文字サイズ*/
+}
+
+/*Appsページ
+---------------------------------------------------------------------------*/
+/*h4見出しの設定*/
+.list h4 {
+	font-size: 16px;	/*文字サイズ*/
+}
+
+/*ul.disc,olタグ
+---------------------------------------------------------------------------*/
+ul.disc {
+	padding: 0 0px 20px 35px;
+}
+ol {
+	padding: 0 0px 20px 35px;
+}
+
+/*その他
+---------------------------------------------------------------------------*/
+.ws {width: 96%;}
+.big1 {font-size: 22px;letter-spacing: normal;}
+}
 
 /*フッター設定
 ---------------------------------------------------------------------------*/

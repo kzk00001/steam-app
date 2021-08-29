@@ -26,8 +26,7 @@ class Apps
       web_scraping=WebScraping.order(updated_at: :desc).limit(1)
       scraped_num=web_scraping[0][:scraped_num].to_i
       if scraped_num+increment>applists.length
-        increment=applists.length-scraped_num
-        index=[scraped_num+1..scraped_num+increment]
+        index=[scraped_num+1..applists.length]
         scraped_num=0
       else
         scraped_num+=increment
@@ -44,7 +43,9 @@ class Apps
       doc = Nokogiri::HTML(open(url),nil,"utf-8")
       price={}
       nokogiri_target(doc,price,:game_purchase_price,".game_purchase_price",:"data-price-final")
-      nokogiri_target(doc,price,:game_purchase_price,".game_purchase_discount",:"data-price-final")
+      if price[:game_purchase_price].nil?
+        nokogiri_target(doc,price,:game_purchase_price,".game_purchase_discount",:"data-price-final")
+      end
       unless price[:game_purchase_price].nil?
         price[:game_purchase_price]=price[:game_purchase_price].to_i/100
         nokogiri_text(doc,price,:discount_pct,"#game_area_purchase .discount_pct")

@@ -18,7 +18,7 @@ class Apps
     end
     doc=eval(html)
     applists=doc[:applist][:apps][4..-1]#5個目からアプリの情報
-    increment=50#1度にスクレイピングするアプリの数
+    increment=10#1度にスクレイピングするアプリの数
     if WebScraping.order(updated_at: :desc).limit(1).blank?
       scraped_num=0
       index=[scraped_num+1..scraped_num+increment]

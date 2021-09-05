@@ -47,7 +47,7 @@ Webスクレイピングの定期実行
 ## 実装した機能についての画像やGIFおよびその説明
 ### Steam-API<br>
 Steam-APIからJSON形式で、Steam内に登録されているアプリのID・タイトル名のリストが入手できるので、配列を整形してデータベースに保存する
-[![Image from Gyazo](https://i.gyazo.com/32eedf3e9de2ef21045ecb5b739838f6.png)](https://gyazo.com/32eedf3e9de2ef21045ecb5b739838f6)
+[![Image from Gyazo](https://i.gyazo.com/1c6f156a2ceebfb79a55b0ce080667bf.png)](https://gyazo.com/1c6f156a2ceebfb79a55b0ce080667bf)
 ***
 
 ### Webスクレイピング<br>

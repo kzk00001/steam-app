@@ -98,7 +98,9 @@ class Apps
               tag[:name]=value.text.strip
               if Tag.where(tag).exists?
                 tag=Tag.find_by(tag)
+                tag.update(record_num:(tag[:record_num].to_i+1))
               else
+                tag[:record_num]=1
                 tag=Tag.create(tag)
               end
               ApplistTag.create(applist_id:applist.id,tag_id:tag.id)
@@ -151,5 +153,7 @@ class Apps
     doc.css(selector).each do |value|
       variable[key]=value[target]
     end
+  end
+
   end
 end

@@ -22,14 +22,6 @@ class AppsController < ApplicationController
 
   def search_app
     @q = Applist.ransack(params[:q])
-    tag_record=Tag.order(record_num: 'ASC')
-    @tag=[]
-    i=0
-    tag_record.each do |value|
-      binding.pry
-      @tag[:name]="#{value[:name]} (#{(value[:record_num])})"
-      i+=1
-    end
-    # binding.pry
+    @tag=Tag.order(record_num: 'DESC')
   end
 end

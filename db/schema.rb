@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 2021_08_29_120935) do
   create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_num"
+    t.string "name_record"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

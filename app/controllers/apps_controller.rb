@@ -2,7 +2,7 @@ class AppsController < ApplicationController
   before_action :search_app
 
   def index
-    # Apps.get_app
+    Apps.get_app
     if params[:q].nil?
       @applists=Applist.all.includes([:content, :screenshot_hd, :screenshot_poor, :movie, :tags, :price]).page(params[:page])
     else

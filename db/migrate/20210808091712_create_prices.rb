@@ -1,7 +1,7 @@
 class CreatePrices < ActiveRecord::Migration[6.0]
   def change
     create_table :prices do |t|
-      t.string :game_purchase_price
+      t.integer :game_purchase_price
       t.string :discount_pct
       t.string :discount_original_price
       t.string :discount_final_price

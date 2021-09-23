@@ -110,7 +110,7 @@ class Apps
             end
           end
 
-          uri = "http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=#{applist[:appid]}&count=#{5}&maxlength=300&format=json"
+          uri = "http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=#{applist[:appid]}&count=#{100}&maxlength=300&format=json"
           charset = nil
           html = open(uri) do |h|
             charset = h.charset
@@ -130,7 +130,7 @@ class Apps
       else
         unless DiscardedApplist.where(appid: applist[:appid]).exists?
           nokogiri_text(doc,applist,:release_date,".date")
-          nokogiri_text(doc,applist,:price,".game_purchase_price")
+          nokogiri_text(doc,applist,:game_purchase_price,".game_purchase_price")
           nokogiri_text(doc,applist,:review_summary,"#userReviews .game_review_summary")
           nokogiri_text(doc,applist,:review_summary,"#userReviews .summary")
           DiscardedApplist.create(applist)

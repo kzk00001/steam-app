@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2021_08_29_120935) do
   end
 
   create_table "applists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "appid", null: false
+    t.integer "appid", null: false
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -42,10 +42,10 @@ ActiveRecord::Schema.define(version: 2021_08_29_120935) do
   end
 
   create_table "discarded_applists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "appid", null: false
+    t.integer "appid", null: false
     t.string "name", null: false
-    t.string "release_date"
-    t.string "price"
+    t.datetime "release_date"
+    t.integer "game_purchase_price"
     t.string "review_summary"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2021_08_29_120935) do
     t.text "url", null: false
     t.string "author"
     t.text "contents"
-    t.string "date"
+    t.integer "date"
     t.bigint "applist_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 2021_08_29_120935) do
   end
 
   create_table "prices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "game_purchase_price"
+    t.integer "game_purchase_price"
     t.string "discount_pct"
     t.string "discount_original_price"
     t.string "discount_final_price"
@@ -100,15 +100,15 @@ ActiveRecord::Schema.define(version: 2021_08_29_120935) do
 
   create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
-    t.string "record_num"
+    t.integer "record_num"
     t.string "name_record"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "web_scrapings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "applists_length"
-    t.string "scraped_num"
+    t.integer "applists_length"
+    t.integer "scraped_num"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

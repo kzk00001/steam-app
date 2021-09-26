@@ -1,8 +1,4 @@
 class Apps
-  # def self.get_app
-  #   puts "hoge"
-  # end
-
   #rails runner Apps.get_app
 
   def self.get_app
@@ -64,12 +60,37 @@ class Apps
           nokogiri_text(doc,content,:glance_detail,".glance_details")
           nokogiri_src(doc,content,:header_image_url,".game_header_image_full")
           nokogiri_text(doc,content,:description,".game_description_snippet")
-          nokogiri_text(doc,content,:review_summary,"#userReviews .game_review_summary")
-          nokogiri_text(doc,content,:review_summary,"#userReviews .summary")
           nokogiri_text(doc,content,:release_date,".date")
           nokogiri_text(doc,content,:developer,"#developers_list")
           content[:applist_id]=applist.id
           Content.create(content)
+
+          review={}
+          nokogiri_text(doc,review,:review_summary,"#userReviews .game_review_summary")
+          nokogiri_text(doc,review,:review_summary,"#userReviews .summary")
+          case
+          when review[:review_summary].include?("Overwhelmingly Positive")
+            review[:rating]=8
+          when review[:review_summary].include?("Very Positive")
+            review[:rating]=7
+          when review[:review_summary].include?("Positive")
+            review[:rating]=6
+          when review[:review_summary].include?("Mostly Positive")
+            review[:rating]=5
+          when review[:review_summary].include?("Need more user reviews")
+            review[:review_summary]=review[:review_summary][0..14]
+            review[:rating]=4
+          when review[:review_summary].include?("No user reviews")
+            review[:rating]=3
+          when review[:review_summary].include?("Mixed")
+            review[:rating]=2
+          when review[:review_summary].include?("Mostly Negative")
+            review[:rating]=1
+          when review[:review_summary].include?("Negative")
+            review[:rating]=0
+          end
+          review[:applist_id]=applist.id
+          Review.create(review)
 
           doc.css(".highlight_screenshot_link").each do |value|
             screenshot_hd={}

@@ -5,7 +5,6 @@ class CreateContents < ActiveRecord::Migration[6.0]
       t.text :glance_detail
 
       t.text :description
-      t.string :review_summary
       t.datetime :release_date
       t.string :developer
       t.references :applist,         null: false, foreign_key: true

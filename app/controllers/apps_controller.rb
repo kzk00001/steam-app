@@ -4,7 +4,8 @@ class AppsController < ApplicationController
   def index
     # Apps.get_app
     if params[:q].nil?
-      @applists=Applist.all.includes([:content, :screenshot_hd, :screenshot_poor, :movie, :tags, :price]).page(params[:page])
+      @applists=Applist.joins(:review,:price).includes([:content,:screenshot_hd,:screenshot_poor,:movie,:tags,:price,:review])
+      .order("reviews.rating DESC","prices.discount_pct DESC").page(params[:page])
     else
       @applists=@q.result.distinct.includes([:tags, :price]).page(params[:page])
     end
@@ -21,7 +22,7 @@ class AppsController < ApplicationController
   private
 
   def search_app
-    @q = Applist.ransack(params[:q])
+    @q=Applist.ransack(params[:q])
     @tag=Tag.order(record_num: 'DESC')
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_29_120935) do
+ActiveRecord::Schema.define(version: 2021_09_26_161306) do
 
   create_table "applist_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "applist_id", null: false
@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 2021_08_29_120935) do
     t.text "header_image_url", null: false
     t.text "glance_detail"
     t.text "description"
-    t.string "review_summary"
     t.datetime "release_date"
     t.string "developer"
     t.bigint "applist_id", null: false
@@ -82,6 +81,15 @@ ActiveRecord::Schema.define(version: 2021_08_29_120935) do
     t.index ["applist_id"], name: "index_prices_on_applist_id"
   end
 
+  create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "review_summary", null: false
+    t.integer "rating"
+    t.bigint "applist_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["applist_id"], name: "index_reviews_on_applist_id"
+  end
+
   create_table "screenshot_hds", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.text "url", null: false
     t.bigint "applist_id", null: false
@@ -119,6 +127,7 @@ ActiveRecord::Schema.define(version: 2021_08_29_120935) do
   add_foreign_key "movies", "applists"
   add_foreign_key "news", "applists"
   add_foreign_key "prices", "applists"
+  add_foreign_key "reviews", "applists"
   add_foreign_key "screenshot_hds", "applists"
   add_foreign_key "screenshot_poors", "applists"
 end

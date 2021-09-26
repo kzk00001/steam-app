@@ -12,7 +12,7 @@
 
     <div class='nav'>
       <nav id="menubar"><ul>
-        <li><%= sort_link(@q, :content_review_summary, "Recommend", default_order: :desc) %></li>
+        <li><%= sort_link(@q, :review_rating, "Recommend", default_order: :desc) %></li>
         <li><%= sort_link(@q, :price_discount_pct, "Discount", default_order: :desc) %></li>
         <li><%= sort_link(@q, :content_release_date, "Release date", default_order: :desc) %></li>
       </ul></nav>

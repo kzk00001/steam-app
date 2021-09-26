@@ -5,6 +5,7 @@ class Applist < ApplicationRecord
   has_many :movie,              dependent: :destroy
   has_many :price,              dependent: :destroy
   has_many :news,               dependent: :destroy
+  has_one :review,              dependent: :destroy
 
   has_many :applist_tags,              dependent: :destroy
   has_many :tags, through: :applist_tags

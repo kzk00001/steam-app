@@ -5,7 +5,10 @@
 
       <div class='item-center'>
         <h4><%= applist.name %></h4>
-        <div class='item-review_summary'><%= applist.content.review_summary %></div>
+        <div class='item-review_summary'>
+          <%= applist.review.review_summary %>
+          <%# <%= link_to applist.review.review_summary, "https://store.steampowered.com/app/#{applist.appid}/#app_reviews_hash", class: "review" %>
+        </div>
         <% if applist.content.description.present?%>
           <div class='item-description'>
             <%= applist.content.description.truncate(150) %>

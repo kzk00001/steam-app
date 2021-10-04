@@ -4,7 +4,8 @@ class AppsController < ApplicationController
   def index
     # Apps.get_app
     if params[:q].nil?
-      @applists=Applist.joins(:review,:price).includes([:content,:screenshot_hd,:screenshot_poor,:movie,:tags,:price,:review])
+      # @applists=Applist.joins(:review,:price).includes([:content,:screenshot_hd,:screenshot_poor,:movie,:tags,:price,:review])
+      @applists=Applist.joins(:review,:price).includes([:tags,:review,:price])
       .order("reviews.rating DESC","prices.discount_pct DESC").page(params[:page])
     else
       @applists=@q.result.distinct.includes([:tags, :price]).page(params[:page])

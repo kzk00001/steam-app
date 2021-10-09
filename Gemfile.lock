@@ -85,6 +85,8 @@ GEM
       activesupport (>= 4.2.0)
     groupdate (5.2.2)
       activesupport (>= 5)
+    hooks (0.4.1)
+      uber (~> 0.0.14)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.2)
@@ -171,6 +173,11 @@ GEM
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    recommendable (2.2.2)
+      activesupport (>= 3.0.0)
+      hooks (>= 0.2.1)
+      redis (>= 2.2.0)
+    redis (4.4.0)
     regexp_parser (2.1.1)
     ruby_dep (1.5.0)
     rubyzip (2.3.2)
@@ -207,6 +214,7 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (1.2.9)
       thread_safe (~> 0.1)
+    uber (0.0.15)
     web-console (4.1.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -248,6 +256,7 @@ DEPENDENCIES
   puma_worker_killer
   rails (~> 6.0.0)
   ransack
+  recommendable
   sass-rails (~> 5)
   selenium-webdriver
   spring

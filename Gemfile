@@ -61,3 +61,4 @@ gem 'groupdate'
 gem 'kaminari'
 gem 'whenever', :require => false
 gem 'puma_worker_killer'
+gem 'recommendable'

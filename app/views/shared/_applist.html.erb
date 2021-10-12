@@ -1,14 +1,13 @@
 <div class='list'>
   <%= link_to app_path(applist.id) do %>
     <div class='item-content'>
-      <%# <div class='image'> %>
-        <%= image_tag applist.content.header_image_url %>
-      <%# </div> %>
+      <div class='item-image'>
+        <%= image_tag applist.content.header_image_url, class:'image-content' %>
+      </div>
       <div class='item-center'>
         <h4><%= applist.name %></h4>
         <div class='item-review_summary'>
-          <%= applist.review.review_summary %>
-          <%# <%= link_to applist.review.review_summary,
+          <%= link_to applist.review.review_summary,
           "https://store.steampowered.com/app/#{applist.appid}/#app_reviews_hash" %>
         </div>
         <% if applist.content.description.present?%>

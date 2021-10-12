@@ -102,7 +102,7 @@ a:hover {
 }
 .list .image-content {
 	float: left;
-	padding-right: 5%;
+	margin-right: 10px;
 	flex-shrink: 0;
 }
 /*段落タグ*/
@@ -117,6 +117,7 @@ a:hover {
 	margin-bottom: 20px;
 }
 .item-center {
+	padding: 0 20px;
 	margin-right: 30px;
 }
 .item-review_summary a{

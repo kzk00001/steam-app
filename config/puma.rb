@@ -55,7 +55,7 @@ before_fork do
     config.percent_usage = 0.90
  
     # 4. 2/3とは別にWorkerを再起動する周期(秒単位) ※(例)3分毎
-    config.rolling_restart_frequency = 3 * 60
+    config.rolling_restart_frequency = 3 * 60 * 60
  
     # 5. 監視ログの出力
     config.reaper_status_logs = false

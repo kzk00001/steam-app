@@ -7,8 +7,18 @@
       <div class='item-center'>
         <h4><%= applist.name %></h4>
         <div class='item-review_summary'>
-          <%= link_to applist.review.review_summary,
-          "https://store.steampowered.com/app/#{applist.appid}/#app_reviews_hash" %>
+          <% if applist.review.review_summary.include?("positive")%>
+            <div class='item-review_positive'>
+          <% elsif applist.review.review_summary.include?("user")%>
+            <div class='item-review_no_user_reviews'>
+          <% elsif applist.review.review_summary.include?("mixied")%>
+            <div class='item-review_mixed'>
+          <% elsif applist.review.review_summary.include?("negative")%>
+            <div class='item-review_negative'>
+          <% end %>
+            <%= link_to applist.review.review_summary,
+            "https://store.steampowered.com/app/#{applist.appid}/#app_reviews_hash" %>
+          </div>
         </div>
         <% if applist.content.description.present?%>
           <div class='item-description'>
